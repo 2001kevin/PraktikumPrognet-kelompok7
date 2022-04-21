@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Halo Admin Furniture Shop yang baik hati dan tidak sombong!
                 </div>
             </div>
         </div>

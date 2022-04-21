@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Option;
-use Gate;
+use App\Models\Option;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 

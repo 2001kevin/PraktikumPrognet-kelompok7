@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Admin\HomeController;
+>>>>>>> eaafddf33028e51d97f8305f4c80b903432492b0
 
 Route::get('/', function () {return view('menus.index');});
 Route::get('/index', function () {return view('menus.index');});
@@ -15,7 +18,6 @@ Route::get('/testimoni', function(){return view('menus.testi',["title"=> "Testim
 Route::get('/login', function () {return view('welcome');});
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact.send');
 Route::post('/contact/send', [ContactController::class, 'sendEmail'])->name('contact.send');
-
 
 Auth::routes(['verify'=> true]);
 
@@ -32,8 +34,7 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
     Route::get('/admin-dashboard', [HomeController::class, 'index'])->name('home');
-    
-});
+ });
 
 Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
