@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
 @section('content')
     <form action="/product" method="POST">

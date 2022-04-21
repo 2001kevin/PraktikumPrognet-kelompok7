@@ -8,13 +8,37 @@
                     {{ trans('global.dashboard') }}
                 </a>
             </li>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-dark"> Categories</a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark">Category Details</a>
-                <a href="/product" class="list-group-item list-group-item-action bg-dark">Products</a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark">Product Images</a>
-                <a href="/discount" class="list-group-item list-group-item-action bg-dark">Discount</a>
-            </div>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    Categories
+                </a>
+              </li>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-folder-open"></i>
+                    Category Details
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/product" class="nav-link">
+                      <i class="nav-icon fas fa-shopping-cart"></i>
+                      Products
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-thin fa-images"></i>
+                      Product Images
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item has-treeview">
+                <a href="/discount" class="nav-link">
+                  <i class="nav-icon fas fa-thin fa-tags"></i>        
+                    Discount
+                </a>
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>
