@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+
 @section('content')
     <form action="/discount" method="POST">
         @csrf
@@ -15,7 +15,7 @@
         @endif
         <div class="card mt-3 bg-light">
             <div class="card-header">
-                <h1>Master Product</h1>
+                <h1>Master Discount</h1>
             </div>
             <div class="card-body">
                 <div class="col">
@@ -28,20 +28,20 @@
                     </select>
                </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="price" name="percentage" value="{{ old('percentage') }}" placeholder="Product Percentage">
-                    <label for="province">Product Percentage</label>
+                    <label for="province">Discount Percentage</label>
+                    <input type="text" class="form-control" id="price" name="percentage" value="{{ old('percentage') }}" placeholder="Discount Percentage">
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Description">
                     <label for="province">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Description">
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
+                    <label for="province">Start Discount</label>
                     <input type="date" class="form-control" id="product_rate" name="start" value="{{ old('start') }}" placeholder="Product Rate">
-                    <label for="province">Start Discount</label>
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
+                    <label for="province">End Discount</label>
                     <input type="date" class="form-control" id="product_rate" name="end" value="{{ old('end') }}" placeholder="Product Rate">
-                    <label for="province">Start Discount</label>
                 </div>
                 
                
@@ -50,6 +50,4 @@
             </div>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 @endsection

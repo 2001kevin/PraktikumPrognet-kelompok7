@@ -16,7 +16,7 @@
         <h1>Product List</h1>
       </div>
       <div class="card-body">
-        <table class="table table-striped table-hover " id="province">
+        <table class="table table-striped table-hover " id="datatable">
             <thead>
               <tr>
                 <th scope="col">NO.</th>
@@ -56,15 +56,13 @@
             </table>
       </div>
     </div>
-    @section('javascripts')
-
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script>
     $(document).ready( function () {
-        $('#province').DataTable();
+        $('#datatable').DataTable();
     } );
     </script>
-    @endsection
+    
 @endsection

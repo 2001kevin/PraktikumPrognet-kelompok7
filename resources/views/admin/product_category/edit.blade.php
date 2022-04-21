@@ -1,5 +1,4 @@
-@extends('layouts.main')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+@extends('layouts.admin')
 @section('content')
     <form action="/category/{{ $product_category -> id }}" method="POST">
         @method('put')
@@ -30,6 +29,4 @@
             </div>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 @endsection

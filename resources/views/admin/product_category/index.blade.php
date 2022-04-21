@@ -1,8 +1,5 @@
-@extends('layouts.main')
-@section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-@endsection
+@extends('layouts.admin')
+
 @section('content')
     <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/category/create">Add Product Category</a>
     @if ($message = Session::get('success'))
@@ -49,7 +46,6 @@
             </table>
       </div>
     </div>
-    @section('javascripts')
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -59,5 +55,5 @@
         $('#province').DataTable();
     } );
     </script>
-    @endsection
+
 @endsection

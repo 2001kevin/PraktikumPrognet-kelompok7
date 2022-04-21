@@ -1,10 +1,6 @@
-@extends('layouts.main')
-@section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-@endsection
+@extends('layouts.admin')
 @section('content')
-    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/discount/create">Add Discount</a>
+    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/discount/create">Add Image</a>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -17,10 +13,10 @@
     @endif
     <div class="card bg-light">
       <div class="card-header">
-        <h1>Product List</h1>
+        <h1>Product Image List</h1>
       </div>
       <div class="card-body">
-        <table class="table table-striped table-hover " id="province">
+        <table class="table table-striped table-hover " id="datatable">
             <thead>
               <tr>
                 <th scope="col">NO.</th>
@@ -52,15 +48,14 @@
             </table>
       </div>
     </div>
-    @section('javascripts')
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script>
     $(document).ready( function () {
-        $('#province').DataTable();
+        $('#datatable').DataTable();
     } );
     </script>
-    @endsection
+
 @endsection
