@@ -6,9 +6,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\RolesController;
-use App\Http\Controllers\Admin\CategoriesController;
-use App\Http\Controllers\Admin\UsersController;
 
 Route::get('/', function () {return view('menus.index');});
 Route::get('/index', function () {return view('menus.index');});
@@ -34,22 +31,7 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
     Route::get('/admin-dashboard', [HomeController::class, 'index'])->name('home');
-     // Roles
-     Route::delete('roles/destroy', [RolesController::class, 'massDestroy'])->name('roles.massDestroy');
-     Route::resource('roles', 'RolesController');
- 
-     // Users
-     Route::delete('users/destroy', [UsersController::class, 'massDestroy'])->name('users.massDestroy');
-     Route::resource('users', 'UsersController');
- 
-     // Categories
-     Route::delete('categories/destroy', [CategoriesController::class, 'massDestroy'])->name('categories.massDestroy');
-     Route::resource('categories', 'CategoriesController');
- 
-     Route::resource('product', ProductController::class);
-     Route::resource('discount', DiscountController::class);
-
-});
+ });
 
 Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
