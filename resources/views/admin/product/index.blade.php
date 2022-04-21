@@ -1,8 +1,4 @@
-@extends('layouts.main')
-@section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-@endsection
+@extends('layouts.admin')
 @section('content')
     <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/product/create">Add Product</a>
     @if ($message = Session::get('success'))

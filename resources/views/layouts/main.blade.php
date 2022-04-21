@@ -35,7 +35,7 @@
     <!-- Back to top button -->
     <div class="back-to-top"></div>
 
-    @include('partials.navbar')
+    @include('layouts.navbar')
     <div class="container">
       @yield('content')
     </div>

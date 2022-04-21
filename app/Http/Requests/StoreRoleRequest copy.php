@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Question;
-use Illuminate\Support\Facades\Gate;
+use App\Role;
+use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class StoreQuestionRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     public function authorize()
     {
-        abort_if(Gate::denies('question_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -19,12 +19,15 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id'   => [
+            'title'         => [
                 'required',
+            ],
+            'permissions.*' => [
                 'integer',
             ],
-            'question_text' => [
+            'permissions'   => [
                 'required',
+                'array',
             ],
         ];
     }
