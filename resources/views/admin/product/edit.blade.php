@@ -1,7 +1,8 @@
 @extends('layouts.main')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
 @section('content')
-    <form action="/product" method="POST">
+    <form action="/product/{{ $product -> id }}" method="POST">
+        @method('put')
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">

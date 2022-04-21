@@ -10,4 +10,11 @@ class product extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'products';
+
+    public function discount(){
+        return $this->hasMany(discount::class);
+    }
+    public function product_image(){
+        return $this->hasMany(product_image::class);
+    }
 }

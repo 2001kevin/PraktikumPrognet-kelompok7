@@ -1,8 +1,7 @@
 @extends('layouts.main')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
 @section('content')
-    <form action="/discount/{{ $discount -> id }}" method="POST">
-        @method('put')
+    <form action="/proimage" method="POST" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -16,9 +15,15 @@
         @endif
         <div class="card mt-3 bg-light">
             <div class="card-header">
-                <h1>Master Product</h1>
+                <h1>Master Product Image</h1>
             </div>
             <div class="card-body">
+                <div class=" mb-3 mt-3 col-lg-8">
+                    <label for="product_image" class="mb-3 fw-bold">Product Image :</label>
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    <input type="file" class="form-control img-preview" id="product-image" name="image_name" value="{{ old('image_name', $product_image->image_name) }}" 
+                       placeholder="Product Image" onchange="previewImage()">
+                </div>
                 <div class="col">
                     <label class="mb-2 fw-bold">Product Name : </label>
                     <select class="form-select mb-3" name="product_id" aria-label="Default select example">
@@ -28,29 +33,24 @@
                             @endforeach
                     </select>
                </div>
-                <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="price" name="percentage" value="{{ old('percentage') }}" placeholder="Product Percentage">
-                    <label for="province">Product Percentage</label>
-                </div>
-                <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Description">
-                    <label for="province">Description</label>
-                </div>
-                <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="date" class="form-control" id="product_rate" name="start" value="{{ old('start') }}" placeholder="Product Rate">
-                    <label for="province">Start Discount</label>
-                </div>
-                <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="date" class="form-control" id="product_rate" name="end" value="{{ old('end') }}" placeholder="Product Rate">
-                    <label for="province">Start Discount</label>
-                </div>
-                
-               
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/discount">Back</a>
+                    <a type="button" class="btn btn-primary" href="/proimage">Back</a>
             </div>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        function previewImage() {
+          const image = document.querySelector('#product-image');
+          const imgpreview = document.querySelector('.img-preview');
+          imgpreview.style.display = 'block';
+          const oFReader = new FileReader();
+          oFReader.readAsDataURL(image.files[0]);
+          oFReader.onload = function(oFREvent) {
+            imgpreview.src = oFREvent.target.result;
+          }
+        }
+    </script>
 @endsection

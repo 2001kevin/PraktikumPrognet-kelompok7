@@ -7,7 +7,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 
-
 Route::get('/', function () {return view('menus.index');});
 Route::get('/index', function () {return view('menus.index');});
 Route::get('/about', function () {return view('menus.about',["title" => "About"]);});
@@ -38,4 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
+Route::resource('proimage', ProductImageController::class);
+Route::resource('category', ProductCategoryController::class);
+Route::resource('categorydetail', ProductCategoryDetailController::class);
 

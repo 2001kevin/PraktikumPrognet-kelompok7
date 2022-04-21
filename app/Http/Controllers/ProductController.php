@@ -97,7 +97,7 @@ class ProductController extends Controller
             'stock' => 'required|numeric',
             'weight' => 'required|numeric'
         ]);
-        
+        $product = product::find($product->id);
         product::where('id', $product->id)->update([
             'product_name' => $request->product_name,
             'price' => $request->price,
