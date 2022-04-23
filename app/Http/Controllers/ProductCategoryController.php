@@ -43,7 +43,7 @@ class ProductCategoryController extends Controller
         product_category::create([
             'category_name' => $request->category_name
         ]);
-        return redirect('/category')->with('success','Category Created Successfully');
+        return redirect('/product_category')->with('success','Category Created Successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class ProductCategoryController extends Controller
         product_category::where('id', $product_category->id)->update([
             'category_name' => $request->category_name
         ]);
-        return redirect('/category')->with('success','Category Edited Successfully');
+        return redirect('/product_category')->with('success','Category Edited Successfully');
     }
 
     /**
@@ -97,6 +97,6 @@ class ProductCategoryController extends Controller
     public function destroy(product_category $product_category)
     {
         product_category::destroy($product_category->id);
-        return redirect('/category')->with('deleted', 'Category Deleted Successfully');
+        return redirect('/product_category')->with('deleted', 'Category Deleted Successfully');
     }
 }

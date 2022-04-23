@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <form action="/category/{{ $product_category -> id }}" method="POST">
+    <form action="/product_category/{{ $product_category -> id }}" method="POST">
         @method('put')
         @csrf
         @if ($errors->any())
@@ -25,7 +25,7 @@
                 
                
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/category">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_category">Back</a>
             </div>
         </div>
     </form>

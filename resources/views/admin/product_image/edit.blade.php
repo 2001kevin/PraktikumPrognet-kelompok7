@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
 @section('content')
-    <form action="/proimage/{{ $product_image -> id }}" method="POST" enctype="multipart/form-data">
+    <form action="/product_image/{{ $product_image -> id }}" method="POST" enctype="multipart/form-data">
         @method('put')
         @csrf
         @if ($errors->any())
@@ -35,7 +35,7 @@
                     </select>
                </div>
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/proimage">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_image">Back</a>
             </div>
         </div>
     </form>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="/categorydetail" method="POST">
+    <form action="/product_category_detail" method="POST">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -15,7 +15,7 @@
         @endif
         <div class="card mt-3 bg-light">
             <div class="card-header">
-                <h1>Master Product</h1>
+                <h1>Details Product Category</h1>
             </div>
             <div class="card-body">
                 <div class="col">
@@ -29,8 +29,8 @@
                </div>
                <div class="col">
                     <label class="mb-2 fw-bold">Category Name : </label>
-                    <select class="form-select mb-3" name="product_id" aria-label="Default select example">
-                      <option selected>Pilih Product</option>
+                    <select class="form-select mb-3" name="category_id" aria-label="Default select example">
+                      <option selected>Pilih Category Product</option>
                             @foreach ($product_category as $cat => $category_name )
                                 <option value="{{ $category_name }}">{{ $cat }}</option>
                             @endforeach
@@ -38,7 +38,7 @@
                </div>
                 
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/categorydetail">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_category_detail">Back</a>
             </div>
         </div>
     </form>

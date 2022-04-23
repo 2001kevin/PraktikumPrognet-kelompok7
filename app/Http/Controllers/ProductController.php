@@ -76,6 +76,7 @@ class ProductController extends Controller
     public function edit(product $product)
     {
         $product = product::find($product->id);
+
         return view('admin.product.edit', compact('product'));
     }
 
@@ -97,7 +98,7 @@ class ProductController extends Controller
             'stock' => 'required|numeric',
             'weight' => 'required|numeric'
         ]);
-        $product = product::find($product->id);
+        //$product = product::find($product->id);
         product::where('id', $product->id)->update([
             'product_name' => $request->product_name,
             'price' => $request->price,
@@ -120,4 +121,5 @@ class ProductController extends Controller
         $products = product::destroy($product->id);
         return redirect('/product')->with('deleted', 'Product Deleted Successfully');
     }
+
 }

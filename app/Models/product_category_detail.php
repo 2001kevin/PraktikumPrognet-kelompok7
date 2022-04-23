@@ -11,10 +11,10 @@ class product_category_detail extends Model
     protected $guarded = ['id'];
     protected $table = 'product_category_details';
     public function product_category(){
-        return $this->belongsTo(product_category::class);
+        return $this->belongsTo(product_category::class, 'product_id');
     }
 
     public function product(){
-        return $this->belongsTo(product::class);
+        return $this->belongsTo(product::class, 'product_id');
     }
 }

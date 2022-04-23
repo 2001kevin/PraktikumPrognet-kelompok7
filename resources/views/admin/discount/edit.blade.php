@@ -28,19 +28,19 @@
                     </select>
                </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="price" name="percentage" value="{{ old('percentage') }}" placeholder="Product Percentage">
+                    <input type="text" class="form-control" id="price" name="percentage" value="{{ old('percentage', $discount->percentage) }}" placeholder="Product Percentage">
                     <label for="province">Product Percentage</label>
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Description">
+                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $discount->description) }}" placeholder="Description">
                     <label for="province">Description</label>
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="date" class="form-control" id="product_rate" name="start" value="{{ old('start') }}" placeholder="Product Rate">
+                    <input type="date" class="form-control" id="product_rate" name="start" value="{{ old('start', $discount->start) }}" placeholder="Product Rate">
                     <label for="province">Start Discount</label>
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="date" class="form-control" id="product_rate" name="end" value="{{ old('end') }}" placeholder="Product Rate">
+                    <input type="date" class="form-control" id="product_rate" name="end" value="{{ old('end', $discount->end) }}" placeholder="Product Rate">
                     <label for="province">Start Discount</label>
                 </div>
                 

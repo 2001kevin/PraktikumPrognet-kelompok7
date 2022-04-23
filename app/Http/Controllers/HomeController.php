@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,4 +30,5 @@ class HomeController extends Controller
 
         return redirect()->route('client.home')->with('status', session('status'));
     }
+
 }

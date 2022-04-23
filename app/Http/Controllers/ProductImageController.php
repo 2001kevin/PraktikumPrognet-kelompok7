@@ -53,7 +53,7 @@ class ProductImageController extends Controller
             'product_id' => $request->product_id
         ]);
 
-        return redirect('/proimage')->with('success','Product Image Created Successfully');
+        return redirect('/product_image')->with('success','Product Image Created Successfully');
 
     }
 
@@ -78,6 +78,7 @@ class ProductImageController extends Controller
     {
         $product = product::pluck('id', 'product_name');
         $product_image = product_image::find($product_image->id);
+        //dd($promimage);
         return view('admin.product_image.edit', compact('product_image','product'));
     }
 
@@ -97,14 +98,14 @@ class ProductImageController extends Controller
 
         $file_name = $request->image_name->getClientOriginalName();
         $image_name = $request->image_name->storeAs('image', $file_name);
-        $product_image = product_image::find($product_image->id);
+        //$product_image = product_image::find($product_image->id);
         
-        product_image::where('id', $request->id)->update([
+       product_image::where('id', $request->id)->update([
             'image_name' => $image_name,
             'product_id' => $request->product_id
         ]);
 
-        return redirect('/proimage')->with('success','Product Image Edited Successfully');
+        return redirect('/product_image')->with('success','Product Image Edited Successfully');
     }
 
     /**
@@ -116,6 +117,6 @@ class ProductImageController extends Controller
     public function destroy(product_image $product_image)
     {
         product_image::destroy($product_image->id);
-        return redirect('/proimage')->with('deleted','Image Deleted Successfully');
+        return redirect('/product_image')->with('deleted','Image Deleted Successfully');
     }
 }

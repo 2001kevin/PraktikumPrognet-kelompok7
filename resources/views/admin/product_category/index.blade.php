@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/category/create">Add Product Category</a>
+    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/product_category/create">Add Product Category</a>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -32,8 +32,8 @@
                     <td>{{ $cat->category_name }}</td>
                     <td>
                   
-                        <a type="button" class="btn btn-warning btn-sm rounded-pill" href="/category/{{ $cat->id }}/edit">Edit</a>
-                        <form action="/category/{{ $cat -> id }}" method="POST" class="d-inline"  >
+                        <a type="button" class="btn btn-warning btn-sm rounded-pill" href="/product_category/{{ $cat->id }}/edit">Edit</a>
+                        <form action="/product_category/{{ $cat -> id }}" method="POST" class="d-inline"  >
                           @method('delete')
                           @csrf
                           <button class="btn btn-danger btn-sm rounded-pill" onclick="return confirm('Are you sure ?')">Delete</button>

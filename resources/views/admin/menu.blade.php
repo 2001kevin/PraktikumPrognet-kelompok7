@@ -9,13 +9,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/category" class="nav-link">
+                <a href="/product_category" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     Categories
                 </a>
               </li>
               <li class="nav-item has-treeview">
-                <a href="categorydetail" class="nav-link">
+                <a href="/product_category_detail" class="nav-link">
                   <i class="nav-icon fas fa-folder-open"></i>
                     Category Details
                 </a>
@@ -27,7 +27,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/proimage" class="nav-link">
+                    <a href="/product_image" class="nav-link">
                       <i class="nav-icon fas fa-thin fa-images"></i>
                       Product Images
                     </a>

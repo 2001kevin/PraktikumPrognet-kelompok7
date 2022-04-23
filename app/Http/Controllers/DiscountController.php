@@ -79,6 +79,7 @@ class DiscountController extends Controller
     public function edit(discount $discount)
     {
         $discount = discount::find($discount->id);
+        dd($discount);
         $product = product::pluck('id', 'product_name');
         return view('admin.discount.edit', compact('discount','product'));
     }
@@ -100,7 +101,7 @@ class DiscountController extends Controller
             'end' => 'required'
         ]);
         $discount = discount::find($discount->id);
-        discount::where('id', $discount->id)->create([
+        discount::where('id', $discount->id)->update([
             'product_id' => $request->product_id,
             'percentage' => $request->percentage,
             'description' => $request->description,

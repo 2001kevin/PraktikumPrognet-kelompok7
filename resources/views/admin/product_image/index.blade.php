@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/discount/create">Add Image</a>
+    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/product_image/create">Add Image</a>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -33,9 +33,9 @@
                     <td>{{ $image->image_name }}</td>
                     <td>
                   
-                        <a type="button" class="btn btn-primary btn-sm rounded-pill" href="/proimage/{{ $image-> id }}">Details</a>
-                        <a type="button" class="btn btn-warning btn-sm rounded-pill" href="/proimage/{{ $image-> id }}/edit">Edit</a>
-                        <form action="/proimage/{{ $image -> id }}" method="POST" class="d-inline">
+                        
+                        <a type="button" class="btn btn-warning btn-sm rounded-pill" href="/product_image/{{ $image-> id }}/edit">Edit</a>
+                        <form action="/product_image/{{ $image -> id }}" method="POST" class="d-inline">
                           @method('delete')
                           @csrf
                           <button class="btn btn-danger btn-sm rounded-pill" onclick="return confirm('Are you sure ?')">Delete</button>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <form action="/category" method="POST">
+    <form action="/product_category" method="POST">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,10 +21,9 @@
                     <input type="text" class="form-control" id="price" name="category_name" value="{{ old('category_name') }}" placeholder="Product Category">
                     <label for="province">Product Category</label>
                 </div>
-                
                
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/category">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_category">Back</a>
             </div>
         </div>
     </form>

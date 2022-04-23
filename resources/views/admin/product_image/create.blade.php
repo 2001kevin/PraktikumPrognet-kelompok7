@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="/proimage" method="POST" enctype="multipart/form-data">
+    <form action="/product_image" method="POST" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -21,7 +21,7 @@
                 <div class=" mb-3 mt-3 col-lg-8">
                     <label for="product_image" class="mb-3 fw-bold">Product Image :</label>
                     <img class="img-preview img-fluid mb-3 col-sm-5">
-                    <input type="file" class="form-control img-preview" id="product-image" name="image_name" value="{{ old('image_name', $product_image->image_name) }}" 
+                    <input type="file" class="form-control img-preview" id="product-image" name="image_name" value="{{ old('image_name') }}" 
                        placeholder="Product Image" onchange="previewImage()">
                 </div>
                 <div class="col">
@@ -34,7 +34,7 @@
                     </select>
                </div>
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/proimage">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_image">Back</a>
             </div>
         </div>
     </form>

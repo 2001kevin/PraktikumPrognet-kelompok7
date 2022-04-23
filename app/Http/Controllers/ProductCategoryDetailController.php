@@ -42,7 +42,17 @@ class ProductCategoryDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_id' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        product_category_detail::create([
+            'product_id'=>$request->product_id,
+            'category_id'=>$request->category_id
+        ]);
+
+        return redirect('/product_category_detail')->with('success', "Detail Category Created Successfully");
     }
 
     /**
@@ -64,7 +74,10 @@ class ProductCategoryDetailController extends Controller
      */
     public function edit(product_category_detail $product_category_detail)
     {
-        //
+        $product_category = product_category::pluck('id', 'category_name');
+        $product = product::pluck('id', 'product_name');
+        $product_category_detail = product_category_detail::find($product_category_detail->id);
+        return view('admin.product_category_details.edit', compact('product','product_category','product_category_detail'));
     }
 
     /**
@@ -76,7 +89,17 @@ class ProductCategoryDetailController extends Controller
      */
     public function update(Request $request, product_category_detail $product_category_detail)
     {
-        //
+        $request->validate([
+            'product_id' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        product_category_detail::where('id', $product_category_detail->id)->update([
+            'product_id'=>$request->product_id,
+            'category_id'=>$request->category_id
+        ]);
+
+        return redirect('/product_category_detail')->with('success', "Detail Category Edited Successfully");
     }
 
     /**
@@ -87,6 +110,7 @@ class ProductCategoryDetailController extends Controller
      */
     public function destroy(product_category_detail $product_category_detail)
     {
-        //
+        product_category_detail::destroy($product_category_detail->id);
+        return redirect('/product_caregory_detail')->with('deleted', 'Detail Category Deleted Successfully');
     }
 }
