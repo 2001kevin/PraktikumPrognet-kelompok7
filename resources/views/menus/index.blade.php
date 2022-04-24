@@ -15,7 +15,7 @@
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="image_1"><img src="images/img-1.png"></div>
+                     <div class="image_1"><img src="/images/img-1.png"></div>
                   </div>
                </div>
             </div>
@@ -31,7 +31,7 @@
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="image_1"><img src="images/img-1.png"></div>
+                     <div class="image_1"><img src="/images/img-1.png"></div>
                   </div>
                </div>
             </div>
@@ -47,7 +47,7 @@
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="image_1"><img src="images/img-1.png"></div>
+                     <div class="image_1"><img src="/images/img-1.png"></div>
                   </div>
                </div>
             </div>
@@ -68,7 +68,7 @@
       <div class="about_section_2">
          <div class="row">
             <div class="col-md-6">
-               <div class="image_2"><img src="images/img-2.png"></div>
+               <div class="image_2"><img src="/images/img-2.png"></div>
             </div>
             <div class="col-md-6">
                <h1 class="about_taital">About Us</h1>
@@ -90,59 +90,30 @@
                <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
                <div class="design_section_2">
                   <div class="row">
-                     @foreach ($product_image as $pro )
-                     <div class="col-md-4">
-                        <div class="box_main">
-                              <p class="chair_text">{{ $pro->product->product_name }}</p>
-                              <div class="image_3" href="#"><img src="{{ asset('storage/'. $pro->image_name) }}"></div>
-                              <p class="chair_text">IDR {{ $pro->product->price }}</p>
-                              <div class="buy_bt"><a href="#">Buy Now</a></div>
-                           </div>
+                     <div class="card " style="width: 18rem;">
+                        <div class="card-header">
+                           Categories
                         </div>
-                        @endforeach
+                        <ul class="list-group list-group-flush">
+                           @foreach ($product_category_detail as $category )
+                              <li class="list-group-item"><a href="/viewcategory/{{ $category -> id }}">{{ $category->product_category->category_name }}</a></li>                            
+                           @endforeach
+                        </ul>
+                     </div>
+                     @forelse ($product_image as $pro )
+                        <div class="col-md-4">
+                           <div class="box_main">
+                                 <p class="chair_text">{{ $pro->product->product_name }}</p>
+                                 <div class="image_3" href="#"><img src="{{ asset('storage/'. $pro->image_name) }}"></div>
+                                 <p class="chair_text">IDR {{ $pro->product->price }}</p>
+                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
+                              </div>
+                           </div>
+                     @empty
+                        <h1>No Product Added</h1>
+                     @endforelse ($product_image as $pro )
                      </div>
                   </div>
-            </div>
-         </div>
-         <div class="carousel-item">
-            <div class="container">
-               <h1 class="design_taital">Our Work Furniture</h1>
-               <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
-               <div class="design_section_2">
-                  <div class="row">
-                     @foreach ($product_image as $pro )
-                     <div class="col-md-4">
-                        <div class="box_main">
-                              <p class="chair_text">{{ $pro->product->product_name }}</p>
-                              <div class="image_3" href="#"><img src="{{ asset('storage/'. $pro->image_name) }}"></div>
-                              <p class="chair_text">IDR {{ $pro->product->price }}</p>
-                              <div class="buy_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                        @endforeach
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="carousel-item">
-            <div class="container">
-               <h1 class="design_taital">Our Work Furniture</h1>
-               <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
-               <div class="design_section_2">
-                  <div class="row">
-                    @foreach ($product_image as $pro )
-                     <div class="col-md-4">
-                        <div class="box_main">
-                              <p class="chair_text">{{ $pro->product->product_name }}</p>
-                              <div class="image_3" href="#"><img src="{{ asset('storage/'. $pro->image_name) }}"></div>
-                              <p class="chair_text">IDR {{ $pro->product->price }}</p>
-                              <div class="buy_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                        @endforeach
-                  </div>
-               </div>
             </div>
          </div>
       </div>

@@ -11,7 +11,7 @@ class product_category_detail extends Model
     protected $guarded = ['id'];
     protected $table = 'product_category_details';
     public function product_category(){
-        return $this->belongsTo(product_category::class, 'product_id');
+        return $this->belongsTo(product_category::class, 'category_id');
     }
 
     public function product(){
