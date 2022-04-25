@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('stock')->unsigned();
             $table->double('weight', 9, 2)->unsigned();
+            $table->foreignId('category_id')->constrained('product_categories');
         });
     }
 

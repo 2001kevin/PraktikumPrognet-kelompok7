@@ -42,6 +42,15 @@
                         <input type="text" class="form-control" id="stock" name="weight" value="{{ old('stock') }}" placeholder="Stock">
                         <label for="province">Weight</label>
                     </div>
+                    <div class="col">
+                        <label class="mb-2 fw-bold">Category Name : </label>
+                        <select class="form-select mb-3" name="category_id" aria-label="Default select example">
+                        <option selected>Pilih Category Product</option>
+                                @foreach ($product_category as $cat => $category_name )
+                                    <option value="{{ $category_name }}">{{ $cat }}</option>
+                                @endforeach
+                        </select>
+                    </div>
                
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a type="button" class="btn btn-primary" href="/product">Back</a>

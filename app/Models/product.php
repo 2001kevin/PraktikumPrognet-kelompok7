@@ -15,9 +15,9 @@ class product extends Model
         return $this->hasMany(discount::class);
     }
     public function product_image(){
-        return $this->hasMany(product_image::class);
+        return $this->hasMany(product_image::class, 'product_id');
     }
-    public function product_category_detail(){
-        return $this->hasMany(product_category_detail::class);
+    public function product_category(){
+        return $this->belongsTo(product_category::class, 'category_id');
     }
 }

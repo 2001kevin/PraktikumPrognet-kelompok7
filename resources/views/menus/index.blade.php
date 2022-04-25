@@ -95,17 +95,22 @@
                            Categories
                         </div>
                         <ul class="list-group list-group-flush">
-                           @foreach ($product_category_detail as $category )
-                              <li class="list-group-item"><a href="/viewcategory/{{ $category -> id }}">{{ $category->product_category->category_name }}</a></li>                            
-                           @endforeach
+                          
+                              @foreach ($product_category as $cat )
+                                 
+                              <li class="list-group-item"><a href="/viewcategory/{{ $cat ->id }}">{{ $cat->category_name }}</a></li>                            
+                              @endforeach
+                           
                         </ul>
                      </div>
-                     @forelse ($product_image as $pro )
+                     @forelse ($product as $pro )
                         <div class="col-md-4">
                            <div class="box_main">
-                                 <p class="chair_text">{{ $pro->product->product_name }}</p>
-                                 <div class="image_3" href="#"><img src="{{ asset('storage/'. $pro->image_name) }}"></div>
-                                 <p class="chair_text">IDR {{ $pro->product->price }}</p>
+                                 <p class="chair_text">{{ $pro->product_name }}</p>
+                                 @foreach ($pro -> product_image as $image)
+                                   <div class="image_3" href="#"><img src="{{ asset('storage/'. $image->image_name) }}"></div>
+                                 @endforeach
+                                 <p class="chair_text">IDR {{ $pro->price }}</p>
                                  <div class="buy_bt"><a href="#">Buy Now</a></div>
                               </div>
                            </div>

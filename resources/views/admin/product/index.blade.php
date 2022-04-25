@@ -26,6 +26,7 @@
                 <th scope="col">Product Rate</th>
                 <th scope="col">Product Stock</th>
                 <th scope="col">Product Weight</th>
+                <th scope="col">Product Category</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -39,9 +40,10 @@
                     <td>{{ $product->product_rate }}</td>
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->weight }}</td>
+                    <td>{{ $product->product_category->category_name }}</td>
                     <td>
                   
-                        <a type="button" class="btn btn-primary btn-sm rounded-pill" href="/product/{{ $product-> id }}">Details</a>
+                        
                         <a type="button" class="btn btn-warning btn-sm rounded-pill" href="/product/{{ $product-> id }}/edit">Edit</a>
                         <form action="/product/{{ $product -> id }}" method="POST" class="d-inline"  >
                           @method('delete')

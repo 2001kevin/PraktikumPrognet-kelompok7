@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\product_category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,6 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = product::all();
+        $product = product_category::pluck('id', 'category_name');
         return view('admin.product.index',compact('products'));
     }
 
@@ -25,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $product_category = product_category::pluck('id', 'category_name');
+        return view('admin.product.create', compact('product_category'));
     }
 
     /**
@@ -42,7 +45,8 @@ class ProductController extends Controller
             'description' => 'required',
             'product_rate' => 'required|numeric',
             'stock' => 'required|numeric',
-            'weight' => 'required|numeric'
+            'weight' => 'required|numeric',
+            'category_id'=>'required'
         ]);
 
         product::create([
@@ -51,7 +55,8 @@ class ProductController extends Controller
             'description' => $request->description,
             'product_rate' => $request->product_rate,
             'stock' => $request->stock,
-            'weight' => $request->weight
+            'weight' => $request->weight,
+            'category_id' => $request->category_id
         ]);
         return redirect('/product')->with('success','Product Create Successfully');
     }
@@ -96,7 +101,8 @@ class ProductController extends Controller
             'description' => 'required',
             'product_rate' => 'required|numeric',
             'stock' => 'required|numeric',
-            'weight' => 'required|numeric'
+            'weight' => 'required|numeric',
+            'category_id'=>'required'
         ]);
         //$product = product::find($product->id);
         product::where('id', $product->id)->update([
@@ -105,7 +111,8 @@ class ProductController extends Controller
             'description' => $request->description,
             'product_rate' => $request->product_rate,
             'stock' => $request->stock,
-            'weight' => $request->weight
+            'weight' => $request->weight,
+            'category_id' => $request->category_id
         ]);
         return redirect('/product')->with('success','Product Edited Successfully');
     }
