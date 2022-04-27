@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="banner_section layout_padding">
+<div class="banner_section layout_padding mt-3">
    <div id="main_slider" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
          <div class="carousel-item active">
@@ -97,7 +97,6 @@
                         <ul class="list-group list-group-flush">
                           
                               @foreach ($product_category as $cat )
-                                 
                               <li class="list-group-item"><a href="/viewcategory/{{ $cat ->id }}">{{ $cat->category_name }}</a></li>                            
                               @endforeach
                            
@@ -107,9 +106,12 @@
                         <div class="col-md-4">
                            <div class="box_main">
                                  <p class="chair_text">{{ $pro->product_name }}</p>
-                                 @foreach ($pro -> product_image as $image)
-                                   <div class="image_3" href="#"><img src="{{ asset('storage/'. $image->image_name) }}"></div>
-                                 @endforeach
+                                 @forelse ( $pro -> product_image as $image )
+                                    <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/'. $image->image_name) }}"></div>
+                                 @empty
+                                    
+                                 <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/'. $image->image_name) }}"></div>
+                                 @endforelse ($pro -> product_image as $image)
                                  <p class="chair_text">IDR {{ $pro->price }}</p>
                                  <div class="buy_bt"><a href="#">Buy Now</a></div>
                               </div>

@@ -19,6 +19,14 @@ class HomeBaseController extends Controller
         return view('menus.index', compact('product','product_image','product_category','product_category_detail'));
     }
 
+    public function shopview(){
+        $product = product::all();
+        $product_image = product_image::all();
+        $product_category_detail = product_category_detail::all();
+        $category = product_category::all();
+        return view('menus.shop', compact('product','product_image','category','product_category_detail'));
+    }
+
     public function viewcategory(product_category $product_category){
        
         $product = $product_category->product()->get();

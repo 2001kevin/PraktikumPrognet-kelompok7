@@ -16,7 +16,7 @@
         @endif
         <div class="card mt-3 bg-light">
             <div class="card-header">
-                <h1>Master Product Image</h1>
+                <h1>Edit Product Image</h1>
             </div>
             <div class="card-body">
                 <div class=" mb-3 mt-3 col-lg-8">

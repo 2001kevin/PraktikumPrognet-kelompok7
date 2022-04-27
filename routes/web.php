@@ -12,7 +12,7 @@ Route::get('/', [HomeBaseController::class, 'home']);
 Route::get('/viewcategory/{product_category}', [HomeBaseController::class, 'viewcategory']);
 Route::get('/index', function () {return view('menus.index');});
 Route::get('/about', function () {return view('menus.about',["title" => "About"]);});
-Route::get('/shop', function () {return view('menus.shop',["title" => "Shop"]);});
+Route::get('/shop', [HomeBaseController::class, 'shopview']);
 Route::get('/testimoni', function(){return view('menus.testi',["title"=> "Testimoni"]);});
 Route::get('/login', function () {return view('welcome');});
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact.send');

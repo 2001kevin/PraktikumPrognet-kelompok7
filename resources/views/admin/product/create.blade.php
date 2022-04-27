@@ -39,7 +39,7 @@
                         <label for="province">Stock</label>
                     </div>
                     <div class="form-floating mb-3 mt-3 col-lg-8">
-                        <input type="text" class="form-control" id="stock" name="weight" value="{{ old('stock') }}" placeholder="Stock">
+                        <input type="text" class="form-control" id="stock" name="weight" value="{{ old('stock') }}" placeholder="Weight">
                         <label for="province">Weight</label>
                     </div>
                     <div class="col">

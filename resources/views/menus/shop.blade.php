@@ -11,22 +11,33 @@
                         <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
                         <div class="design_section_2">
                            <div class="row">
-                              <div class="col-md-4">
-                                 <div class="box_main">
-                                    <p class="chair_text">Chair 01</p>
-                                    <div class="image_3" href="#"><img src="images/img-3.png"></div>
-                                    <p class="chair_text">Price $100</p>
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                 </div>
+                              <div class="card " style="width: 18rem;">
+                        <div class="card-header">
+                           Categories
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          
+                              @foreach ($category as $cat )
+                              <li class="list-group-item"><a href="/viewcategory/{{ $cat ->id }}">{{ $cat->category_name }}</a></li>                            
+                              @endforeach
+                           
+                        </ul>
+                     </div>
+                     @forelse ($product as $pro )
+                        <div class="col-md-4">
+                           <div class="box_main">
+                                 <p class="chair_text">{{ $pro->product_name }}</p>
+                                 @foreach ($pro -> product_image as $image)
+                                   <div class="image_3" href="#"><img src="{{ asset('storage/'. $image->image_name) }}"></div>
+                                 @endforeach
+                                 <p class="chair_text">IDR {{ $pro->price }}</p>
+                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
                               </div>
-                              <div class="col-md-4">
-                                 <div class="box_main">
-                                    <p class="chair_text">Chair 02</p>
-                                    <div class="image_4" href="#"><img src="images/img-4.png"></div>
-                                    <p class="chair_text">Price $100</p>
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                 </div>
-                              </div>
+                           </div>
+                     @empty
+                        <h1>No Product Added</h1>
+                     @endforelse ($product_image as $pro )
+                     </div>
                               <div class="col-md-4">
                                  <div class="box_main">
                                     <p class="chair_text">Table</p>
