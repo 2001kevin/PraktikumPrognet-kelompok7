@@ -1,5 +1,6 @@
 @extends('layouts.admin')
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @section('content')
     <form action="/product_image" method="POST" enctype="multipart/form-data">
         @csrf
@@ -18,14 +19,13 @@
                 <h1>Master Product Image</h1>
             </div>
             <div class="card-body">
-                <div class=" mb-3 mt-3 col-lg-8">
-                    <label for="product_image" class="mb-3 fw-bold">Product Image :</label>
-                    <img class="img-preview img-fluid mb-3 col-sm-5">
-                    <input type="file" class="form-control img-preview" id="product-image" name="image_name" value="{{ old('image_name') }}" 
-                       placeholder="Product Image" onchange="previewImage()">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Product Image</label>
+                    <input class="form-control" type="file" name="image_name[]" multiple>
                 </div>
+               
                 <div class="col">
-                    <label class="mb-2 fw-bold">Product Name : </label>
+                    <label class="mb-2 fw-bold mt-3">Product Name : </label>
                     <select class="form-select mb-3" name="product_id" aria-label="Default select example">
                       <option selected>Pilih Product</option>
                             @foreach ($product as $pro => $product_name )
@@ -51,5 +51,16 @@
             imgpreview.src = oFREvent.target.result;
           }
         }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $(".btn-success").click(function(){ 
+            var lsthmtl = $(".clone").html();
+            $(".increment").after(lsthmtl);
+        });
+        $("body").on("click",".btn-danger",function(){ 
+            $(this).parents(".demo").remove();
+        });
+        });
     </script>
 @endsection

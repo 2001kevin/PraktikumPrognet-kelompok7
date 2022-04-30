@@ -41,17 +41,32 @@ class ProductImageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image_name' => 'required|mimes:png,jpg',
+            'image_name' => 'required',
             'product_id' => 'required'
         ]);
 
-        $file_name = $request->image_name->getClientOriginalName();
-        $image_name = $request->image_name->storeAs('image', $file_name);
+        if($request->has('image_name')){
+            //$image_name = $request->file('image_name');
+            foreach($request->file('image_name') as $image){
+                $file_name = $image->getClientOriginalName();
+                $path = $image->storeAs('image', $file_name);
+                product_image::create([
+                    'product_id'=>$request->product_id,
+                    'image_name'=>$file_name
+                ]);
+            }
+        }
+        /*product_image::create([
+            'image_name' => $file_name,
+            'product_id' => $request->product_id,
+        ]);*/
+
+        /*$image = new product_image();
+        $image->image_name = $image;
+        $image->product_id = $request->product_id;
+        $image->save();*/
         
-        product_image::create([
-            'image_name' => $image_name,
-            'product_id' => $request->product_id
-        ]);
+        
 
         return redirect('/product_image')->with('success','Product Image Created Successfully');
 
