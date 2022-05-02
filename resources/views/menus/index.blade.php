@@ -90,27 +90,29 @@
                <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
                <div class="design_section_2">
                   <div class="row">
-                     <div class="card " style="width: 18rem;">
-                        <div class="card-header">
-                           Categories
+                     <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                           <div class="card-header">
+                              Categories
+                           </div>
+                           @foreach ($product_category as $cat )
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item"><a href="/viewcategory/{{ $cat -> id }}">{{ $cat->category_name }}</a></li>
+                              </ul>
+                              
+                           @endforeach
                         </div>
-                        <ul class="list-group list-group-flush">
-                          
-                              @foreach ($product_category as $cat )
-                              <li class="list-group-item"><a href="/viewcategory/{{ $cat ->id }}">{{ $cat->category_name }}</a></li>                            
-                              @endforeach
-                           
-                        </ul>
+
                      </div>
-                     @forelse ($product as $pro )
-                        <div class="col-md-4">
+                     @forelse ($products as $pro )
+                        <div class="col-md-3">
                            <div class="box_main">
                                  <p class="chair_text">{{ $pro->product_name }}</p>
                                  @forelse ( $pro -> product_image as $image )
-                                    <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/'. $image->image_name) }}"></div>
-                                 @empty
-                                    
-                                 <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/'. $image->image_name) }}"></div>
+                                    <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/image/'. $image->image_name) }}"></div>
+                                    @break
+                                 @empty   
+                                    <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/image/meja komputer.jpg') }}"></div>
                                  @endforelse ($pro -> product_image as $image)
                                  <p class="chair_text">IDR {{ $pro->price }}</p>
                                  <div class="buy_bt"><a href="#">Buy Now</a></div>

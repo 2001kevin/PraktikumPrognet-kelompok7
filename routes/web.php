@@ -39,6 +39,7 @@ Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
 Route::resource('product_image', ProductImageController::class);
 Route::resource('product_category', ProductCategoryController::class);
+Route::resource('product_category_detail', ProductCategoryDetailController::class);
 
 
 

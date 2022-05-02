@@ -12,11 +12,12 @@ use App\Models\product_image;
 class HomeBaseController extends Controller
 {
     public function home(){
-        $product = product::all();
-        $product_image = product_image::all();
+        $products = product::all();
+        $product_image = product_image::where('id', 1)->first();
         $product_category_detail = product_category_detail::all();
         $product_category = product_category::all();
-        return view('menus.index', compact('product','product_image','product_category','product_category_detail'));
+        //return $product;
+        return view('menus.index', compact('products','product_image','product_category','product_category_detail'));
     }
 
     public function shopview(){
@@ -29,11 +30,11 @@ class HomeBaseController extends Controller
 
     public function viewcategory(product_category $product_category){
        
-        $product = $product_category->product()->get();
+        //show product by category
+        $products = $product_category->product()->get();
         $product_image = product_image::all();
-        $product_category_detail = product_category_detail::all();
-        $product_category = product_category::all();
-        return view('menus.index', compact('product','product_image','product_category','product_category_detail'));
+        $product_category = product_category::all();;
+        return view('menus.index', compact('products','product_image','product_category'));
       
     }
 }
