@@ -37,4 +37,12 @@ class HomeBaseController extends Controller
         return view('menus.index', compact('products','product_image','product_category'));
       
     }
+
+    public function detailproduct(product $product){
+        $product_image = product_image::all();
+        $products = product::with('product_image')->find($product->id);
+
+        //return $products;
+        return view('menus.detailproduct', compact('products'));
+    }
 }

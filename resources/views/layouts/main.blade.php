@@ -12,6 +12,12 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+      <!-- Detail Product css -->
+      
+      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	   
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="/css/detailproduct.css"/>
       <!-- bootstrap css -->
       <link rel="stylesheet" href="/css/bootstrap.min.css">
       <link href="/https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -45,9 +51,9 @@
       <div class="container">
          <div class="footer_location_text">
             <ul>
-               <li><img src="images/map-icon.png"><span class="padding_left_10"><a href="#">Loram Ipusm hosting web</a></span></li>
-               <li><img src="images/call-icon.png"><span class="padding_left_10"><a href="#">Call : +7586656566</a></span></li>
-               <li><img src="images/mail-icon.png"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
+               <li><img src="/images/map-icon.png"><span class="padding_left_10"><a href="#">Loram Ipusm hosting web</a></span></li>
+               <li><img src="/images/call-icon.png"><span class="padding_left_10"><a href="#">Call : +7586656566</a></span></li>
+               <li><img src="/images/mail-icon.png"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
             </ul>
          </div>
          <div class="row">
@@ -96,6 +102,8 @@
    <script src="/js/bootstrap.bundle.min.js"></script>
    <script src="/js/jquery-3.0.0.min.js"></script>
    <script src="/js/plugin.js"></script>
+   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
    <!-- sidebar -->
    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="/js/custom.js"></script>

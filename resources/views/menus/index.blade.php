@@ -98,31 +98,29 @@
                            @foreach ($product_category as $cat )
                               <ul class="list-group list-group-flush">
                                  <li class="list-group-item"><a href="/viewcategory/{{ $cat -> id }}">{{ $cat->category_name }}</a></li>
-                              </ul>
-                              
+                              </ul>  
                            @endforeach
                         </div>
-
                      </div>
                      @forelse ($products as $pro )
                         <div class="col-md-3">
                            <div class="box_main">
                                  <p class="chair_text">{{ $pro->product_name }}</p>
                                  @forelse ( $pro -> product_image as $image )
-                                    <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/image/'. $image->image_name) }}"></div>
+                                    <div href="#"><img class="image_3" width="800" height="600" src="{{ asset('storage/image/'. $image->image_name) }}"></div>
                                     @break
                                  @empty   
                                     <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/image/meja komputer.jpg') }}"></div>
                                  @endforelse ($pro -> product_image as $image)
                                  <p class="chair_text">IDR {{ $pro->price }}</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                 <div class="buy_bt"><a href="/detail/{{ $pro -> id }}">Buy Now</a></div>
                               </div>
                            </div>
                      @empty
                         <h1>No Product Added</h1>
                      @endforelse ($product_image as $pro )
                      </div>
-                  </div>
+               </div>
             </div>
          </div>
       </div>

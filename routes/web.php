@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeBaseController;
 
 Route::get('/', [HomeBaseController::class, 'home']);
 Route::get('/viewcategory/{product_category}', [HomeBaseController::class, 'viewcategory']);
+//view detail product
+Route::get('/detail/{product}', [HomeBaseController::class,'detailproduct']);
 Route::get('/index', function () {return view('menus.index');});
 Route::get('/about', function () {return view('menus.about',["title" => "About"]);});
 Route::get('/shop', [HomeBaseController::class, 'shopview']);
