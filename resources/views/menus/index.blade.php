@@ -107,13 +107,13 @@
                            <div class="box_main">
                                  <p class="chair_text">{{ $pro->product_name }}</p>
                                  @forelse ( $pro -> product_image as $image )
-                                    <div href="#"><img class="image_3" width="800" height="600" src="{{ asset('storage/image/'. $image->image_name) }}"></div>
+                                    <img class="image_3 img-responsive" alt="" src="{{ asset('storage/image/'. $image->image_name) }}"/>
                                     @break
                                  @empty   
                                     <div class="image_3" href="#"><img width="800" height="600" src="{{ asset('storage/image/meja komputer.jpg') }}"></div>
                                  @endforelse ($pro -> product_image as $image)
-                                 <p class="chair_text">IDR {{ $pro->price }}</p>
-                                 <div class="buy_bt"><a href="/detail/{{ $pro -> id }}">Buy Now</a></div>
+                                    <p class="chair_text">IDR {{ $pro->price }}</p>
+                                    <div class="buy_bt"><a href="/detail/{{ $pro -> id }}">Buy Now</a></div>
                               </div>
                            </div>
                      @empty
@@ -124,10 +124,10 @@
             </div>
          </div>
       </div>
-      <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="next">
       <i class="fa fa-long-arrow-left" style="font-size:24px"></i>
       </a>
-      <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#my_slider" role="button" data-slide="prev">
       <i class="fa fa-long-arrow-right" style="font-size:24px"></i>
       </a>
    </div>
