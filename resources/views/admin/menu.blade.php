@@ -32,6 +32,12 @@
                       Product Images
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/courier" class="nav-link">
+                      <i class="nav-icon fas fa-thin fa-images"></i>
+                      Courier
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item has-treeview">

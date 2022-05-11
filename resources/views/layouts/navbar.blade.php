@@ -30,26 +30,26 @@
               <li class="nav-item">
                  <a class="nav-link" href="/contact">Contact</a>
               </li>
-              @auth
-          <div class="dropdown">
-            <button type="button" class="btn btn-danger dropdown-toggle mt-1" data-toggle="dropdown">
-              Welcome back, {{ auth()->user()->name }}
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/profile">My Profile</a>
-              <div class="dropdown-divider"></div>
-              <form action="/sign-out" method="post">
-                @csrf
-              <button type="submit" class="dropdown-item active">Logout</a>
-            </form>
+         @auth
+            <div class="dropdown">
+               <button type="button" class="btn btn-danger dropdown-toggle mt-1" data-toggle="dropdown">
+               Welcome back, {{ auth()->user()->name }}
+               </button>
+               <div class="dropdown-menu">
+               <a class="dropdown-item" href="/profile">My Profile</a>
+               <div class="dropdown-divider"></div>
+               <form action="/sign-out" method="post">
+                  @csrf
+               <button type="submit" class="dropdown-item active">Logout</a>
+               </form>
+               </div>
             </div>
-          </div>
-          @else
-          <li class="nav-item">
-            <a class="nav-link" href="/login">
-              <i class="bi bi-box-arrow-in-right"></i>Login</a>
-          </li>
-          @endauth
+         @else
+            <li class="nav-item">
+               <a class="nav-link" href="/login">
+               <i class="bi bi-box-arrow-in-right"></i>Login</a>
+            </li>
+         @endauth
            </ul>
         </div>
   </nav>

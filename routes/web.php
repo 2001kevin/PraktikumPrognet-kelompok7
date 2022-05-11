@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/admin-dashboard', [HomeController::class, 'index'])->name('home');
     
 });
+Route::resource('courier', CourierController::class);
 Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
 Route::resource('product_image', ProductImageController::class);
