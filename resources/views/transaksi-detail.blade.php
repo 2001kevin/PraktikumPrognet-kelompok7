@@ -136,7 +136,7 @@
                     <h4 class="badge badge-primary mb-4">{{$transaction->status}}</h4>
                 </div>
 
-                @auth('user')
+                @auth('web')
                 @if($transaction->status == "menunggu bukti pembayaran")
                 <div class="row">
                     <div class="progress-container mb-4">
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <form method="post" action="{{route('transaksi-bukti', $transaction->id)}}" enctype="multipart/form-data">
+                <form method="post" action="/transaksi-bukti/{{$transaction->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-grid">
                         <div class="mb-3">
@@ -167,7 +167,7 @@
                     </div>
                 </form>
 
-                <form method="post" action="{{route('transaksi-batal', $transaction->id)}}" enctype="multipart/form-data">
+                <form method="post" action="/transaksi-batal/{{$transaction->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-grid">
                         <button type="submit" class="btn btn-danger">Batal</button>
@@ -176,7 +176,7 @@
                 @endif
                 @endauth
 
-                @if(auth()->user())
+                @auth('web')
                 @if($transaction->status == "menunggu bukti pembayaran")
                 <div class="row">
                     <div class="progress-container mb-4">
@@ -197,7 +197,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="d-grid" method="post" action="{{route('adm-transaksi-status', $transaction->id)}}" enctype="multipart/form-data">
+                <form class="d-grid" method="post" action="/transaksi-status/{{$transaction->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Ubah Status</label>
@@ -219,11 +219,11 @@
                     </div>
                 </div>
                 <div class="d-grid">
-                    <a type="button" class="btn btn-info text-white" href="{{route('adm-transaksi-bukti', $transaction->id)}}">Lihat Bukti Pembayaran</a>
+                    <a type="button" class="btn btn-info text-white" href="/transaksi-bukti/{{$transaction->id}}">Lihat Bukti Pembayaran</a>
                     <a href="{{url('proof_of_payment/'. $transaction->proof_of_payment)}}" type="button" class="btn btn-outline-primary" download>Unduh Bukti Pembayaran</a>
                 </div>
                 @endif
-                @endif
+                @endauth
             </div>
         </div>
     </div>

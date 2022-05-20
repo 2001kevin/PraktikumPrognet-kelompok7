@@ -14,12 +14,15 @@ use App\Models\product_review;
 Route::get('/', [HomeBaseController::class, 'home']);
 Route::get('/viewcategory/{product_category}', [HomeBaseController::class, 'viewcategory']);
 //view detail product
-Route::get('/detail/{product}', [HomeBaseController::class,'detailproduct']);
+Route::get('/detail/{product}', [HomeBaseController::class,'detailproduct'])->name('detail_product');
 Route::get('/index', function () {return view('menus.index');});
 Route::get('/about', function () {return view('menus.about',["title" => "About"]);});
 Route::get('/shop', [HomeBaseController::class, 'shopview']);
 Route::get('/testimoni', function(){return view('menus.testi',["title"=> "Testimoni"]);});
 Route::get('/login', function () {return view('welcome');});
+Route::get('/hapus/cart/{product}', [HomeBaseController::class,'detailproduct'])->name('keranjang-hapus');
+Route::post('/cart/alamat}', [CartController::class,'keranjang_alamat'])->name('keranjang-alamat');
+Route::post('/cart/checkout}', [CartController::class,'keranjang_checkout'])->name('keranjang-checkout');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact.send');
 Route::post('/contact/send', [ContactController::class, 'sendEmail'])->name('contact.send');
 
@@ -40,6 +43,11 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::post('/beli/checkout/{id}/{jumlah}', [CartController::class, 'beli_checkout'])->name('beli-checkout');
     Route::post('/beli-bayar/{id}/{jumlah}', [CartController::class, 'beli_bayar'])->name('beli-bayars');
     Route::get('/transaksi-detail/{id}',[CartController::class,'transaksi_detail'])->name('transaksi-detail');
+    Route::post('/transaksi-bukti/{id}',[CartController::class,'transaksi_bukti'])->name('transaksi-bukti');
+    Route::get('/transaksi-batal/{id}',[CartController::class,'transaksi_batal'])->name('transaksi-batal');
+    Route::get('/transaksi-status/{id}',[CartController::class,'transaksi_status'])->name('adm-transaksi-status');
+    Route::get('/keranjang/bayar',[CartController::class,'keranjang_bayar'])->name('keranjang-bayar');
+    Route::get('/transaksi-bukti/{id}',[CartController::class,'transaksi_buktis'])->name('transaksi-bukti');
     Route::get('/cart',[CartController::class,'cartindex']);
 });
 
