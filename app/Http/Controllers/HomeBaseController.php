@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\product_category;
 use App\Models\product_category_detail;
 use App\Models\product_image;
+use App\Models\product_review;
 
 class HomeBaseController extends Controller
 {
@@ -41,7 +42,8 @@ class HomeBaseController extends Controller
 
     public function detailproduct(product $product){
         $product_image = product_image::all();
-        $products = product::with('product_image')->find($product->id);
+        $product_review = product_review::all();
+        $products = product::with('product_image','product_review')->find($product->id);
 
         //return $products;
         return view('menus.detailproduct', compact('products'));
