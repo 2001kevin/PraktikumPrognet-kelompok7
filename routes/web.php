@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\HomeBaseController;
+use App\Http\Controllers\ProductReviewController;
+use App\Models\product_review;
 
 Route::get('/', [HomeBaseController::class, 'home']);
 Route::get('/viewcategory/{product_category}', [HomeBaseController::class, 'viewcategory']);
@@ -37,6 +39,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/admin-dashboard', [HomeController::class, 'index'])->name('home');
     
 });
+//CRUD MASTER TABLE
 Route::resource('courier', CourierController::class);
 Route::resource('product', ProductController::class);
 Route::resource('discount', DiscountController::class);
@@ -44,5 +47,7 @@ Route::resource('product_image', ProductImageController::class);
 Route::resource('product_category', ProductCategoryController::class);
 Route::resource('product_category_detail', ProductCategoryDetailController::class);
 
+//USER REVIEW
+Route::post('product/review', [ProductReviewController::class, 'store']);
 
 

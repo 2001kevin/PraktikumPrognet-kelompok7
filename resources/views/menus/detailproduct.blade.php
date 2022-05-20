@@ -101,10 +101,13 @@
                         </div>
                         <div class="tab-pane fade" id="reviews">
                             <br />
-                            <form method="post" class="well padding-bottom-10" onsubmit="return false;">
-                                <textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
+                            <form method="post" action="/product/review" class="well padding-bottom-10" >
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $products -> id }}">
+                                <textarea rows="2" class="form-control" name ='content' placeholder="Write a review"></textarea>
+                                <input type ="number" class="mt-2" min="1" max="5" name="rate" placeholder="Rate">
                                 <div class="margin-top-10">
-                                    <button type="submit" class="btn btn-sm btn-primary pull-right">
+                                    <button type="submit" class="btn btn-sm btn-primary pull-right mt-2">
                                         Submit Review
                                     </button>
                                     <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
@@ -113,59 +116,73 @@
                                     <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add File"><i class="fa fa-file"></i></a>
                                 </div>
                             </form>
-
                             <div class="chat-body no-padding profile-message">
                                 <ul>
+                                    @foreach ($products->product_review as $review)
+                                        
                                     <li class="message">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="online" />
                                         <span class="message-text">
                                             <a href="javascript:void(0);" class="username">
-                                                Alisha Molly
-                                                <span class="badge">Purchase Verified</span>
-                                                <span class="pull-right">
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-muted"></i>
-                                                </span>
+                                                {{ $review->user->name }}
+                                                @if ($review->rate == 5)
+                                                    <span class="pull-right">
+                                                        <i class="fa fa-star fa-2x text-primary"></i>
+                                                        <i class="fa fa-star fa-2x text-primary"></i>
+                                                        <i class="fa fa-star fa-2x text-primary"></i>
+                                                        <i class="fa fa-star fa-2x text-primary"></i>
+                                                        <i class="fa fa-star fa-2x text-primary"></i>
+                                                    </span>
+                                                @elseif ($review->rate == 4)
+                                                    <span class="pull-right">
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                    </span>
+                                                @elseif ($review->rate == 3)
+                                                    <span class="pull-right">
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                    </span>
+                                                @elseif ($review->rate == 2)
+                                                    <span class="pull-right">
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                    </span>
+                                                @elseif ($review->rate == 1)
+                                                    <span class="pull-right">
+                                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                            <i class="fa fa-star fa-2x text-muted"></i>
+                                                    </span>
+                                                @endif
                                             </a>
-                                            Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved
+                                            {{ $review->content }}
                                         </span>
                                         <ul class="list-inline font-xs">
                                             <li>
-                                                <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+                                                @if (Auth()->user()->id == 1)
+                                                    
+                                                <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> Reply this comment</a>
+                                                @endif
                                             </li>
                                             <li class="pull-right">
-                                                <small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
+                                                <small class="text-muted pull-right ultra-light"> {{ $review->created_at }} </small>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="message">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="online" />
-                                        <span class="message-text">
-                                            <a href="javascript:void(0);" class="username">
-                                                Aragon Zarko
-                                                <span class="badge">Purchase Verified</span>
-                                                <span class="pull-right">
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                                </span>
-                                            </a>
-                                            Excellent product, love it!
-                                        </span>
-                                        <ul class="list-inline font-xs">
-                                            <li>
-                                                <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-                                            </li>
-                                            <li class="pull-right">
-                                                <small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    @endforeach
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -175,12 +192,6 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="btn-group pull-right">
-                            <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
-                            <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
-                        </div>
                     </div>
                 </div>
             </div>
