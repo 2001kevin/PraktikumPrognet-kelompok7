@@ -189,15 +189,69 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a>
+                jumlah pesan <input type="number" id="jumlah" class="form form-control" value="1" max="{{$products->stock}}" min="1" onkeyup="stock = '<?php echo $products->stock; ?>';   if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
+                <h6 class="card-subtitle mb-2 mt-2 text-muted">Sub Totaln : Rp. <span id="subtotal">
+                    @if(!empty($discount))
+                        {{ $harga }}
+                    @else
+                        {{ $products->price }}
+                    @endif
+                </span></h6>
+                <div class="row" mt-3>
+                    <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <form action="/beli-langsung/{{$products->id}}/" method="get" enctype="multipart/form-data">
+                            @csrf
+                                <input type="number" class="form form-control"  value="1" id="keranjang" name="jumlah_beli" hidden> 
+                                <button type="submit" class="btn btn-primary" style="font-size:12" >Buy Now</button>
+                        </form>
                     </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <form action="/cart-adds/{{$products->id}}/" method="get" enctype="multipart/form-data">
+                            @csrf
+                                <input type="number" class="form form-control" id="beli" value="1" name="jumlah_keranjang" hidden> 
+                                <button type="submit" class="btn btn-success" style="font-size:12">Add Cart</button>
+                        </form>
+                    </div>
+                        <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a> -->
                 </div>
+                @if(!empty($discount))
+                    @php
+                        $harga_fix =$harga;
+                    @endphp
+                
+                @else
+                    @php
+                        $harga_fix=$products->price;
+                    @endphp
+                @endif
+                <!-- <div class="row mt-3">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <form action="" method="post">
+                            <input type="number" class="form form-control" id="jumlah" name="jumlah" hidden> 
+                            <button type="submit" class="btn btn-primary">add cart</button>
+                        </form>
+                        <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a> -->
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
     <!-- end product -->
 </div>
 
+@auth('web')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var jumlah = "jumlah";
+        var harga ="<?php echo $harga_fix; ?>"
+        $("#" + jumlah).change(function() {
+            var hasil = harga * $("#jumlah").val();
+            $("#subtotal").text(hasil);
+            $("#keranjang").val($("#jumlah").val());
+            $("#beli").val($("#jumlah").val());
+        });
+    });
+</script>
+@endauth
 @endsection

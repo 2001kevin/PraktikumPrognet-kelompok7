@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class courier extends Model
+class transaction_detail extends Model
 {
     use HasFactory;
-
-     protected $table = 'couriers';
     protected $guarded = ['id'];
+    protected $table = 'transaction_details';
 
     public function transaction(){
         return $this->hasMany(transaction::class, 'transaction_id');
+    }
+
+    public function product(){
+        return $this->belongsTo(product::class, 'product_id');
     }
 }

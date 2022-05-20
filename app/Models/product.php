@@ -22,6 +22,9 @@ class product extends Model
     public function product_category(){
         return $this->belongsToMany(product_category::class, 'product_category_details','product_id', 'category_id')->withPivot('id');
     }
+    public function transaction_detail(){
+        return $this->hasMany(transaction::class, 'transaction_detail_id');
+    }
     public function product_review(){
         return $this->hasMany(product_review::class, 'product_id');
     }
