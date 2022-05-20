@@ -32,24 +32,24 @@
               </li>
          @auth
             <div class="dropdown">
-               <button type="button" class="btn btn-danger dropdown-toggle mt-1" data-toggle="dropdown">
+               <button type="button" class="btn btn-danger dropdown-toggle mt-3 mb-3" data-toggle="dropdown">
                Welcome back, {{ auth()->user()->name }}
                </button>
                <div class="dropdown-menu">
                <a class="dropdown-item" href="/profile">My Profile</a>
                <div class="dropdown-divider"></div>
-               <form action="/sign-out" method="post">
+               <form action="{{route('client.logout')}}" method="post">
                   @csrf
                <button type="submit" class="dropdown-item active">Logout</a>
                </form>
                </div>
             </div>
-         @else
+            @else
             <li class="nav-item">
-               <a class="nav-link" href="/login">
-               <i class="bi bi-box-arrow-in-right"></i>Login</a>
+               <a class="nav-link" href="{{ route('client.login') }}"
+                <i class="bi bi-box-arrow-in-right"></i>Login</a>
             </li>
-         @endauth
+            @endauth
            </ul>
         </div>
   </nav>

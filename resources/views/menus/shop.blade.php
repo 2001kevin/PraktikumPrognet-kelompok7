@@ -17,7 +17,7 @@
                         </div>
                         <ul class="list-group list-group-flush">
                           
-                              @foreach ($categories as $cat )
+                              @foreach ($product_category as $cat )
                               <li class="list-group-item"><a href="/viewcategory/{{ $cat ->id }}">{{ $cat->category_name }}</a></li>                            
                               @endforeach
                            
