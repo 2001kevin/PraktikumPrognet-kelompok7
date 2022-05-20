@@ -90,4 +90,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function transaction(){
+        return $this->hasMany(transaction::class, 'transaction_id');
+    }
+
+    public function cart(){
+        return $this->hasMany(cart::class, 'cart_id');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeBaseController;
 
 Route::get('/', [HomeBaseController::class, 'home']);
@@ -20,6 +21,7 @@ Route::get('/login', function () {return view('welcome');});
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact.send');
 Route::post('/contact/send', [ContactController::class, 'sendEmail'])->name('contact.send');
 
+
 Auth::routes(['verify'=> true]);
 
 // User
@@ -30,7 +32,15 @@ Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('/change-password', [ChangePasswordController::class, 'create'])->name('password.create');
     Route::post('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     Route::post('/sign-out',[LoginController::class, 'logout']);
+    Route::get('/cart-adds/{id}/', [CartController::class, 'keranjang_tambah'])->name('tambah');
+    Route::get('/beli-langsung/{id}/', [CartController::class, 'beli_langsung'])->name('beli-langsung');
+    Route::get('/beli-alamat/{id}/', [CartController::class, 'beli_alamat'])->name('beli-alamat');
+    Route::post('/beli/checkout/{id}/{jumlah}', [CartController::class, 'beli_checkout'])->name('beli-checkout');
+    Route::post('/beli-bayar/{id}/{jumlah}', [CartController::class, 'beli_bayar'])->name('beli-bayars');
+    Route::get('/transaksi-detail/{id}',[CartController::class,'transaksi_detail'])->name('transaksi-detail');
+    Route::get('/cart',[CartController::class,'cartindex']);
 });
+
 
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {

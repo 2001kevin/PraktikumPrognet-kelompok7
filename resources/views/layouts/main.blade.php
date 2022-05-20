@@ -47,7 +47,7 @@
     </div>
 
    <!-- footer section start -->
-   <div class="footer_section">
+   <div class="footer_section mt-3">
       <div class="container">
          <div class="footer_location_text">
             <ul>
@@ -90,7 +90,7 @@
    </div>
    <!-- footer section end -->
    <!-- copyright section start -->
-   <div class="copyright_section">
+   <div class="copyright_section mt-3">
       <div class="container">
          <p class="copyright_text">Kelompok 7 Praktikum Pemrograman Internet 2022.</p>
       </div>

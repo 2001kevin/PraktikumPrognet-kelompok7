@@ -17,6 +17,7 @@
               <li class="nav-item">
                  <a class="nav-link" href="/shop">Shop</a>
               </li>
+             
               {{--<li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      Categories
@@ -29,6 +30,9 @@
               </li>--}}
               <li class="nav-item">
                  <a class="nav-link" href="/contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                 <a class="nav-link" href="/cart"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
               </li>
          @auth
             <div class="dropdown">
