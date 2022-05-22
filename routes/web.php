@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeBaseController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CartController;
 
 
 Route::get('/', [HomeBaseController::class, 'home']);
@@ -45,6 +46,21 @@ Route::prefix('user')->name('client.')->group(function () {
         Route::post('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
+});
+Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
+    Route::get('home', 'HomeController@redirect');
+    Route::get('/shop', function () {return view('menus.shop');})->name('home');
+    Route::post('/contact/send', [ContactController::class, 'sendEmail'])->name('contact.send');
+    Route::get('/change-password', [ChangePasswordController::class, 'create'])->name('password.create');
+    Route::post('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+    Route::post('/sign-out',[LoginController::class, 'logout']);
+    Route::get('/cart-adds/{id}/', [CartController::class, 'keranjang_tambah'])->name('tambah');
+    Route::get('/beli-langsung/{id}/', [CartController::class, 'beli_langsung'])->name('beli-langsung');
+    Route::get('/beli-alamat/{id}/', [CartController::class, 'beli_alamat'])->name('beli-alamat');
+    Route::post('/beli/checkout/{id}/{jumlah}', [CartController::class, 'beli_checkout'])->name('beli-checkout');
+    Route::post('/beli-bayar/{id}/{jumlah}', [CartController::class, 'beli_bayar'])->name('beli-bayars');
+    Route::get('/transaksi-detail/{id}',[CartController::class,'transaksi_detail'])->name('transaksi-detail');
+    Route::get('/cart',[CartController::class,'cartindex']);
 });
 
 
