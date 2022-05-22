@@ -171,8 +171,9 @@
                                         </span>
                                         <ul class="list-inline font-xs">
                                             <li>
-                                                @if (Auth()->user()->id == 1)                  
-                                                    <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> Reply this comment</a>
+                                                @if (Auth()->user()->id == 1)
+                                                    
+                                                <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> Reply this comment</a>
                                                 @endif
                                             </li>
                                             <li class="pull-right">
@@ -187,24 +188,15 @@
                         </div>
                     </div>
                 </div>
-                <hr/>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Jumlah Pesan</h3>
-                    </div>
-                    <div class="card-body">
-                        <input type="number" id="jumlah" class="form form-control" value="1" max="{{$products->stock}}" min="1" onkeyup="stock = '<?php echo $products->stock; ?>';   if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
-                        <h6 class="card-subtitle mb-2 mt-2 text-muted">Sub Totaln : Rp. <span id="subtotal">
-                            @if(!empty($discount))
-                                {{ $harga }}
-                            @else
-                                {{ $products->price }}
-                            @endif
-                        </span>
-                        </h6>
-
-                    </div>
-                </div>
+                <hr />
+                jumlah pesan <input type="number" id="jumlah" class="form form-control" value="1" max="{{$products->stock}}" min="1" onkeyup="stock = '<?php echo $products->stock; ?>';   if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
+                <h6 class="card-subtitle mb-2 mt-2 text-muted">Sub Totaln : Rp. <span id="subtotal">
+                    @if(!empty($discount))
+                        {{ $harga }}
+                    @else
+                        {{ $products->price }}
+                    @endif
+                </span></h6>
                 <div class="row" mt-3>
                     <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
                         <form action="/beli-langsung/{{$products->id}}/" method="get" enctype="multipart/form-data">

@@ -1,4 +1,3 @@
-
 <div class="sidebar">
     <nav class="sidebar-nav">
 
@@ -53,7 +52,7 @@
                 </a>
             </li>
         </ul>
+
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
-@endsection
