@@ -3,13 +3,19 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CourierController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\HomeBaseController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductImageController;
+use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductCategoryDetailController;
 
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\HomeBaseController;
-use App\Http\Controllers\ProductReviewController;
 use App\Models\product_review;
 
 Route::get('/', [HomeBaseController::class, 'home']);

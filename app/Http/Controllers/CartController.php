@@ -57,8 +57,8 @@ class CartController extends Controller
         return redirect()->back();
     }
     public function cartindex(){
-        $cart = cart::all();
-        return view('menus.cart');
+        $keranjang = cart::all();
+        return view('menus.cart', compact('keranjang'));
     }
 
     public function beli_langsung($id, Request $request){

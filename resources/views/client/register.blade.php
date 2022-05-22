@@ -1,6 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
+<header>
+  <div class="page-banner bg-img bg-img-parallax overlay-dark" style="background-image: url(../assets/img/bg_image_3.jpg);">
+    <div class="container h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-lg-8 mt-3 mb-3">
+          <h1 class="fg-white text-center">Sign up</h1>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .page-banner -->
+</header>
 <div class="row justify-content-center">
     <div class="col-md-6">
 
@@ -61,18 +72,10 @@
                         </div>
                         <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-primary px-4">
-                                {{ trans('global.register') }}
-                            </button>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a class="btn btn-link px-0" href="{{ route('client.login') }}">
-                                {{ trans('global.login') }}
-                            </a>
-                        </div>
-                    </div>
+
+                    <button class="btn btn-block btn-primary">
+                        {{ trans('global.register') }}
+                    </button>
                 </form>
 
             </div>

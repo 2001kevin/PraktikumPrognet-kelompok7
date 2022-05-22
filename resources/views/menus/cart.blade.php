@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('layouts.main')
 
 
 @section('content')
 
-<form method="post" action="{{#}}" enctype="multipart/form-data">
+<form method="post" action="#" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-9">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <a href="/detail/{{ $keranjangs->product->id) }} ">
+                            <a href="/detail/{{ $keranjangs->product->id }} ">
                                 <h4 class="card-title">{{$keranjangs->product->product_name}}</h4>
                             </a>
 

@@ -35,7 +35,7 @@
          </div>
          <div class="py-3 col-lg-6">
            <div class="about-img">
-             <img src="../assets/img/teams/img-6.png" alt="">
+             <img src="images/img-6.png" alt="">
            </div>
          </div>
        </div>
