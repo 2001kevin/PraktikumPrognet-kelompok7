@@ -1,25 +1,27 @@
-@extends('layouts.main')
+@extends('layouts.client')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-<main>
-  <!-- about section start -->
-  <div class="about_section layout_padding">
-    <div class="container">
-       <div class="about_section_2">
-          <div class="row">
-             <div class="col-md-6">
-                <div class="image_2"><img src="images/img-6.png"></div>
-             </div>
-             <div class="col-md-6">
-                <h1 class="about_taital">About Us</h1>
-                <p class="about_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised </p>
-                <div class="readmore_bt"><a href="#">Read More</a></div>
-             </div>
-          </div>
-       </div>
+                <div class="card-body">
+                    @if(session('status'))
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
     </div>
- </div>
- <!-- about section end -->
-</main>
+</div>
 @endsection
