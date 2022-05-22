@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CourierController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\HomeBaseController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductImageController;
