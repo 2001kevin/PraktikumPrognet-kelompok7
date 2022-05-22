@@ -65,7 +65,7 @@
                                 <div class="form-inline" style="float:right;">
                                     <input class="form-control form-control-lg" style="width:70px;" type="number" name="jumlah[]" value="{{$keranjangs->qty}}" id="jumlah{{$i}}" min="1" max="{{$keranjangs->product->stock}}" onkeyup="stock = '<?php echo $keranjangs->product->stock; ?>';  if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
                                     <a type="button" class="btn btn-primary btn-icon btn-round ms-5" href="{{route('keranjang-hapus', $keranjangs->id)}}">
-                                        <span class="material-icons-sharp text-white" style="margin-top:6px; vertical-align: middle; font-size:27px;">delete</span>
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
                                     </a>
                                 </div>
 
