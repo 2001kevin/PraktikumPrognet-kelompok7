@@ -9,10 +9,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-
-            UsersTableSeeder::class,
             AdminSeeder::class,
-
+            UsersTableSeeder::class,
         ]);
     }
 }

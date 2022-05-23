@@ -204,15 +204,15 @@
                                 <input type="number" class="form form-control"  value="1" id="keranjang" name="jumlah_beli" hidden> 
                                 <button type="submit" class="btn btn-primary" style="font-size:12" >Buy Now</button>
                         </form>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
+
                         <form action="/cart-adds/{{$products->id}}/" method="get" enctype="multipart/form-data">
                             @csrf
                                 <input type="number" class="form form-control" id="beli" value="1" name="jumlah_keranjang" hidden> 
                                 <button type="submit" class="btn btn-success" style="font-size:12">Add Cart</button>
                         </form>
-                    </div>
+
                         <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a> -->
+                    </div>
                 </div>
                 @if(!empty($discount))
                     @php

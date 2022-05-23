@@ -42,9 +42,26 @@ class User extends Authenticatable
         'email_verified_at',
     ];
 
-    public function pembeli()
+    public function getIsAdminAttribute()
     {
-        return $this->belongsTo(trx::class, 'id_users');
+        return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::created(function (User $user) {
+            $registrationRole = config('panel.registration_default_role');
+
+            if (!$user->roles()->get()->contains($registrationRole)) {
+                $user->roles()->attach($registrationRole);
+            }
+        });
+    }
+
+    public function userResults()
+    {
+        return $this->hasMany(Result::class, 'user_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)
@@ -69,8 +86,12 @@ class User extends Authenticatable
         $this->notify(new ResetPassword($token));
     }
 
-    public function product_review()
+    public function roles()
     {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function product_review(){
         return $this->hasMany(product_review::class, 'user_id');
     }
 }

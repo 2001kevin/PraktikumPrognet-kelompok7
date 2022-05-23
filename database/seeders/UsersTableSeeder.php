@@ -18,6 +18,27 @@ class UsersTableSeeder extends Seeder
                 'password'       => bcrypt('123456789'),
                 'remember_token' => null,
             ],
+            [
+                'id'             => 2,
+                'name'           => 'Cevin Wahyu',
+                'email'          => 'cevinwahyu@gmail.com',
+                'password'       => bcrypt('123456789'),
+                'remember_token' => null,
+            ],
+            [
+                'id'             => 3,
+                'name'           => 'Bagus Prayogo',
+                'email'          => 'bagus@gmail.com',
+                'password'       => bcrypt('123456789'),
+                'remember_token' => null,
+            ],
+            [
+                'id'             => 4,
+                'name'           => 'Dita Dwiksari',
+                'email'          => 'ditadwikasari@gmail.com',
+                'password'       => bcrypt('123456789'),
+                'remember_token' => null,
+            ],
         ];
 
         User::insert($users);
