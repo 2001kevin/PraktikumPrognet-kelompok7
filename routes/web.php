@@ -75,6 +75,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::view('admin.home', 'admin.home')->name('home');
     });
 });
+
 //CRUD MASTER TABLE
 Route::resource('courier', CourierController::class);
 Route::resource('product', ProductController::class);

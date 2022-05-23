@@ -12,13 +12,11 @@ use App\Models\discount;
 use App\Models\transaction;
 use App\Models\transaction_detail;
 use Carbon\Carbon;
-<<<<<<< HEAD
+
 use Illuminate\Support\Facades\DB;
 use illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
-=======
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
 class CartController extends Controller
 {
     public function keranjang()
@@ -65,13 +63,8 @@ class CartController extends Controller
         }
         return redirect()->back();
     }
-<<<<<<< HEAD
 
-    public function cartindex()
-    {
-=======
     public function cartindex(){
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
         $keranjang = cart::all();
         return view('menus.cart', compact('keranjang'));
     }
@@ -231,21 +224,9 @@ class CartController extends Controller
         );
         transaction_detail::create($transaksi_detail);
 
-<<<<<<< HEAD
-        $data = product::where('id', $id)->first();
-
-        // $product =  DB::Table('products')->where('id',$id)->first();
-        // $data = $product->stock - $jumlah;
-
-        // $s = product::find($id);
-        // $s->stock = $data;
-        // $s->save();
-
-=======
         $book = product::find($id);
         $book->stock = $book->stock - $jumlah;
         $book->save();
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
 
         // $admin = admin::all();
 
@@ -258,23 +239,13 @@ class CartController extends Controller
 
     public function transaksi_detail($id)
     {
-<<<<<<< HEAD
 
         $transaction = transaction::where('id', $id)->first();
-=======
-       
-        $transaction = transaction::where('id',$id)->first();
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
         $transaction_detail = transaction_detail::where('transaction_id', $id)->latest()->get();
         $transaction_detail_id = transaction_detail::where('transaction_id', $id)->first();
-<<<<<<< HEAD
 
         $keranjang = cart::where('user_id', auth()->user()->id)->where('status', 'aktif')->get();
         foreach ($keranjang as $k) {
-=======
-        $keranjang = cart::where('user_id',auth()->user()->id)->where('status','aktif')->get();
-        foreach($keranjang as $k){
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
             $keranjang = cart::find($k->id);
             $keranjang->status = "hapus";
             $keranjang->update();
@@ -295,16 +266,11 @@ class CartController extends Controller
 
             return view('transaksi-detail', compact('transaction', 'transaction_detail'));
         } else if ($transaction->status == "menunggu bukti pembayaran" && $transaction->timeout >= $tanggal) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
             $date = Carbon::createFromFormat('Y-m-d H:s:i', $transaction->timeout);
             $interval = $tanggal->diffAsCarbonInterval($date);
 
             return view('transaksi-detail', compact('transaction', 'interval', 'transaction_detail'));
         } else {
-<<<<<<< HEAD
 
             return view('transaksi-detail', compact('transaction', 'transaction_detail'));
         }
@@ -492,7 +458,7 @@ class CartController extends Controller
 
         $transaction_detail = transaction_detail::where('transaction_id', '=', $id)->get();
         foreach ($transaction_detail as $transaction_details) {
-            $book = book::find($transaction_details->book_id);
+            $book = transaction::find($transaction_details->book_id);
             $book->stock = $book->stock + $transaction_details->qty;
             $book->save();
         }
@@ -589,10 +555,6 @@ class CartController extends Controller
             $date = Carbon::createFromFormat('Y-m-d H:s:i', $transactions->timeout)->toDateTimeString();
             $countdown = $tanggal->diffAsCarbonInterval($date);
             array_push($interval, $countdown);
-=======
-
-            return view('transaksi-detail', compact('transaction', 'transaction_detail'));
->>>>>>> 7e211275cf96e5fb950674f7a18d51c21729d3aa
         }
     }
 }

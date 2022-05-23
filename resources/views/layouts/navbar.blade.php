@@ -42,7 +42,7 @@
                <div class="dropdown-menu">
                <a class="dropdown-item" href="/profile">My Profile</a>
                <div class="dropdown-divider"></div>
-               <form action="/sign-out" method="post">
+               <form action="/logout" method="post">
                   @csrf
                <button type="submit" class="dropdown-item active">Logout</a>
                </form>
