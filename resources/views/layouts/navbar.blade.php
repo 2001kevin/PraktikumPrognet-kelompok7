@@ -17,17 +17,6 @@
               <li class="nav-item">
                  <a class="nav-link" href="/shop">Shop</a>
               </li>
-             
-              {{--<li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     Categories
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                     @foreach ($product_category as $cat)
-                        <li><a class="dropdown-item" href="/viewcategory/{{ $cat->id }}">{{ $cat->category_name }}</a></li> 
-                     @endforeach
-                  </ul>
-              </li>--}}
               <li class="nav-item">
                  <a class="nav-link" href="/contact">Contact</a>
               </li>
@@ -50,7 +39,7 @@
             </div>
          @else
             <li class="nav-item">
-               <a class="nav-link" href="/login">
+               <a class="nav-link" href="/user/login">
                <i class="bi bi-box-arrow-in-right"></i>Login</a>
             </li>
          @endauth

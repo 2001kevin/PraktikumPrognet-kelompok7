@@ -16,7 +16,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('client.login_proses') }}">
+                <form method="POST" action="{{ route('admin.login_proses') }}">
                     @csrf
 
                     <div class="input-group mb-3">
