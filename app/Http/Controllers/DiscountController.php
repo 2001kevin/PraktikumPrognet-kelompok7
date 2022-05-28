@@ -79,7 +79,7 @@ class DiscountController extends Controller
     public function edit(discount $discount)
     {
         $discount = discount::find($discount->id);
-        dd($discount);
+        //dd($discount);
         $product = product::pluck('id', 'product_name');
         return view('admin.discount.edit', compact('discount','product'));
     }

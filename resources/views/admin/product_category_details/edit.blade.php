@@ -16,7 +16,7 @@
         @endif
         <div class="card mt-3 bg-light">
             <div class="card-header">
-                <h1>Master Product</h1>
+                <h1>Edit Category Details</h1>
             </div>
             <div class="card-body">
                 <div class="col">
@@ -39,7 +39,7 @@
                </div>
                 
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a type="button" class="btn btn-primary" href="/categorydetail">Back</a>
+                    <a type="button" class="btn btn-primary" href="/product_category_detail">Back</a>
             </div>
         </div>
     </form>

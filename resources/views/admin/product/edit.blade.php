@@ -19,38 +19,29 @@
             </div>
             <div class="card-body">
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="product_name" name="product_name" value="{{ old('product_name', $product->product_name) }}" placeholder="Product Name">
                     <label for="province">Product Name</label>
+                    <input type="text" class="form-control" id="product_name" name="product_name" value="{{ old('product_name', $product->product_name) }}" placeholder="Product Name">
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $product->price) }}" placeholder="Product Price">
                     <label for="province">Product Price</label>
+                    <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $product->price) }}" placeholder="Product Price">
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $product->description) }}" placeholder="Description">
                     <label for="province">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $product->description) }}" placeholder="Description">
                 </div>
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="product_rate" name="product_rate" value="{{ old('product_rate', $product->product_rate) }}" placeholder="Product Rate">
                     <label for="province">Product Rate</label>
+                    <input type="text" class="form-control" id="product_rate" name="product_rate" value="{{ old('product_rate', $product->product_rate) }}" placeholder="Product Rate">
                 </div>
                 
                     <div class="form-floating mb-3 mt-3 col-lg-8">
-                        <input type="text" class="form-control" id="stock" name="stock" value="{{ old('stock', $product->stock) }}" placeholder="Stock">
                         <label for="province">Stock</label>
+                        <input type="text" class="form-control" id="stock" name="stock" value="{{ old('stock', $product->stock) }}" placeholder="Stock">
                     </div>
                     <div class="form-floating mb-3 mt-3 col-lg-8">
-                        <input type="text" class="form-control" id="stock" name="weight" value="{{ old('weight', $product->weight) }}" placeholder="Weight">
                         <label for="province">Weight</label>
-                    </div>
-                    <div class="col">
-                        <label class="mb-2 fw-bold">Category Name : </label>
-                        <select class="form-select mb-3" name="category_id" aria-label="Default select example">
-                        <option selected>Pilih Category Product</option>
-                                @foreach ($product_category as $cat => $category_name )
-                                    <option value="{{ $category_name }}">{{ $cat }}</option>
-                                @endforeach
-                        </select>
+                        <input type="text" class="form-control" id="stock" name="weight" value="{{ old('weight', $product->weight) }}" placeholder="Weight">
                     </div>
                
                     <button type="submit" class="btn btn-primary">Save</button>

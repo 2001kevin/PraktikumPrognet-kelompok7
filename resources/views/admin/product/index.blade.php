@@ -26,7 +26,6 @@
                 <th scope="col">Product Rate</th>
                 <th scope="col">Product Stock</th>
                 <th scope="col">Product Weight</th>
-                <th scope="col">Product Category</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
