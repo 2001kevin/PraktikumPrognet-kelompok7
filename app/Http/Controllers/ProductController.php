@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\product_category;
+use App\Models\transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -128,5 +130,7 @@ class ProductController extends Controller
         $products = product::destroy($product->id);
         return redirect('/product')->with('deleted', 'Product Deleted Successfully');
     }
+
+    
 
 }

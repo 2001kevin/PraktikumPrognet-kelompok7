@@ -9,6 +9,8 @@ use App\Models\product_category;
 use App\Models\product_category_detail;
 use App\Models\product_image;
 use App\Models\product_review;
+use App\Models\transaction;
+use Illuminate\Support\Facades\Auth;
 
 class HomeBaseController extends Controller
 {
@@ -44,8 +46,15 @@ class HomeBaseController extends Controller
         $product_image = product_image::all();
         $product_review = product_review::all();
         $products = product::with('product_image','product_review')->find($product->id);
-
+        $transaction = transaction::all();
         //return $products;
-        return view('menus.detailproduct', compact('products'));
+        $user_id = Auth()->user()->id;
+        //return $user_id;
+        return view('menus.detailproduct', compact('products','transaction'));
+    }
+
+    public function history(){
+        $transaction = transaction::all();
+        return view('listTransaksi', compact('transaction'));
     }
 }

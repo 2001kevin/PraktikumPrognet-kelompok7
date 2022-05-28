@@ -35,4 +35,15 @@ class Admin extends Authenticatable
         'updated_at',
         'remember_token',
     ];
+    
+    public function createNotif($data)
+    {
+        $notif = new admin_notification();
+        $notif->type = 'App\Notifications\ProducNotification';
+        $notif->notifiable_type = 'App\Models\Admin';
+        $notif->notifiable_id = $this->id;
+        $notif->data = $data;
+        $notif->read_at = null;
+        $notif->save();
+    }
 }

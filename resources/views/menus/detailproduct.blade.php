@@ -106,10 +106,12 @@
                                 <input type="hidden" name="product_id" value="{{ $products -> id }}">
                                 <textarea rows="2" class="form-control" name ='content' placeholder="Write a review"></textarea>
                                 <input type ="number" class="mt-2" min="1" max="5" name="rate" placeholder="Rate">
-                                <div class="margin-top-10">
+                               
                                     <button type="submit" class="btn btn-sm btn-primary pull-right mt-2">
                                         Submit Review
                                     </button>
+
+                                <div class="margin-top-10">
                                     <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Location"><i class="fa fa-location-arrow"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Voice"><i class="fa fa-microphone"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="" data-original-title="Add Photo"><i class="fa fa-camera"></i></a>
@@ -171,10 +173,10 @@
                                         </span>
                                         <ul class="list-inline font-xs">
                                             <li>
-                                                @if (Auth()->user()->id == 1)
-                                                    
-                                                <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> Reply this comment</a>
-                                                @endif
+                                                @auth('admin')
+                                                   <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> Reply this comment</a>
+                                                @endauth
+                                               
                                             </li>
                                             <li class="pull-right">
                                                 <small class="text-muted pull-right ultra-light"> {{ $review->created_at }} </small>
@@ -188,6 +190,8 @@
                         </div>
                     </div>
                 </div>
+                @auth
+                    
                 <hr />
                 jumlah pesan <input type="number" id="jumlah" class="form form-control" value="1" max="{{$products->stock}}" min="1" onkeyup="stock = '<?php echo $products->stock; ?>';   if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
                 <h6 class="card-subtitle mb-2 mt-2 text-muted">Sub Totaln : Rp. <span id="subtotal">
@@ -214,6 +218,7 @@
                     </div>
                         <!-- <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart (IDR {{number_format($products->price) }})</a> -->
                 </div>
+                @endauth
                 @if(!empty($discount))
                     @php
                         $harga_fix =$harga;

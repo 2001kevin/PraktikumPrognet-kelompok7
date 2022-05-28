@@ -16,9 +16,9 @@ class AdminNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data_encode)
     {
-        //
+        
     }
 
     /**
@@ -55,7 +55,7 @@ class AdminNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'offer_id' => $this->offerData['offer_id']
         ];
     }
 }

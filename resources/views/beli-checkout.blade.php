@@ -34,7 +34,7 @@
                 @endphp
                 <div class="row g-0">
                     <div class="col-md-3">
-                        <img class="img-fluid rounded-start" src="{{url('img/'. $gambar->image_name)}}" style="height:200px;">
+                        <img class="img-fluid rounded-start" src="{{ asset('storage/image/'. $gambar->image_name) }} style="height:200px;">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">

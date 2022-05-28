@@ -476,6 +476,33 @@ class CartController extends Controller
             $book->save();
         }
 
+         //notif admin---------------------------------------
+        $user=auth::user();
+        //$user_data=User::find($user->id);
+        $admin = Admin::find(3);
+        $data = [
+           'nama'=> $user->name,
+           'message'=>'Transaksi Dibatalkan!',
+           'id'=> $id,
+           'category' => 'canceled'
+       ];
+       $data_encode = json_encode($data);
+       $admin->AdminNotification($data_encode);
+       //notif admin---------------------------------------
+
+        //notif user---------------------------------------
+        $user=auth::user();
+        $user_data=User::find($user->id);
+        $admin = Admin::find(3);
+        $data = [
+           'nama'=> 'Admin',
+           'message'=>'Transaksi Berhasil Dibatalkan!',
+           'id'=> $id,
+           'category' => 'canceled'
+       ];
+       $data_encode = json_encode($data);
+       $user_data->createNotifUser($data_encode);
+       //notif user---------------------------------------
 
         return redirect()->back();
     }
@@ -543,14 +570,46 @@ class CartController extends Controller
             $countdown = $tanggal->diffAsCarbonInterval($date);
             array_push($interval, $countdown);
         }
+        $user = Auth::user();
+        $data_user = User::find($user->id);
+        $admin = Admin::find(3);
+        $data = [
+            'nama' => $user->name,
+            'message' => 'membeli product!',
+            'id' => $transaction->id,
+            'category' => 'transaction'
+        ];
+        $data_encode = json_encode($data);
+        $admin->createNotif($data_encode);
+        //Notif User-------------------------------------------------------------------
+        $data = [
+            'nama' => 'Admin',
+            'message' => 'Upload Bukti Pembayaran!',
+            'id' => $transaction->id,
+            'category' => 'transcation'
+        ];
+        $data_encode = json_encode($data);
+        $data_user->createNotifUser($data_encode);
+        //Notif User-------------------------------------------------------------------
 
         return view('transaksi', compact('transaction', 'interval'));
     }
-    public function transaksi_status(request $request, $id){
+    public function transaksi_status(transaction $transaction, request $request, $id){
 
         transaction::where('id', $id)->update([
             'status'=>$request->status
         ]);
+
+        $transaksi = DB::table('transactions')->where('id', $id)->value('user_id');
+        $user = User::find($transaksi);
+        $admin = Admin::find(1);
+        $data = [
+            'nama' => $admin->name,
+            'message' => 'merubah status transaksi',
+            'category' => 'transaction'
+        ];
+        $data_encode = json_encode($data);
+        $user->createNotifusers($data_encode);
 
         return redirect()->back();
     }

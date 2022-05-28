@@ -41,6 +41,16 @@ class User extends Authenticatable
         'remember_token',
         'email_verified_at',
     ];
+    public function createNotifusers($data)
+    {
+        $notif = new user_notification();
+        $notif->type = 'App\Notifications\AdminNotification';
+        $notif->notifiable_type = 'App\Models\User';
+        $notif->notifiable_id = $this->id;
+        $notif->data = $data;
+        $notif->read_at =null;
+        $notif->save();
+    }
 
     public function getIsAdminAttribute()
     {

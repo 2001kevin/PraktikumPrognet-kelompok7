@@ -9,6 +9,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="nav-icon fa fa-exclamation" ></i>
+                    Notification
+                </a>
+              </li>
+            <li class="nav-item">
                 <a href="/product_category" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     Categories
@@ -46,9 +52,21 @@
                     Discount
                 </a>
                 <li class="nav-item">
+                    <a href="/listreview" class="nav-link">
+                      <i class="nav-icon fas fa-thin fa-images"></i>
+                      Response Review
+                    </a>
+                  </li>
+                <li class="nav-item">
                     <a href="/approve" class="nav-link">
                       <i class="nav-icon fas fa-thin fa-images"></i>
                       Approvement
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/laporan" class="nav-link">
+                      <i class="nav-icon fas fa-folder-open"></i>
+                      Laporan
                     </a>
                   </li>
             <li class="nav-item">

@@ -1,8 +1,6 @@
 <?php
-
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeBaseController;
 use App\Http\Controllers\LoginController;
@@ -13,6 +11,7 @@ use App\Http\Controllers\CartController;
 //use App\Http\Controllers\ProductCategoryController;
 //use App\Http\Controllers\ProductCategoryDetailController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Models\product_review;
 
 Route::get('/', [HomeBaseController::class, 'home']);
@@ -98,6 +97,18 @@ Route::resource('product_category_detail', ProductCategoryDetailController::clas
 
 //USER REVIEW
 Route::post('product/review', [ProductReviewController::class, 'store']);
+Route::get('listreview', [ProductReviewController::class, 'listreview']);
+Route::get('response/{product_review}',[ProductReviewController::class, 'response']);
+Route::post('review/response', [ProductReviewController::class, 'replyreview']);
 
 //approvement
 Route::get('approve', [AdminController::class, 'approve']);
+
+//laporan
+Route::get('laporan',[AdminController::class, 'laporan']);
+
+//notification
+Route::get('laporan',[AdminController::class, 'laporan']);
+
+//history
+Route::get('history',[HomeBaseController::class, 'history']);
