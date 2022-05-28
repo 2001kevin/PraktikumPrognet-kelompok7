@@ -45,6 +45,12 @@
                   <i class="nav-icon fas fa-thin fa-tags"></i>        
                     Discount
                 </a>
+                <li class="nav-item">
+                    <a href="/approve" class="nav-link">
+                      <i class="nav-icon fas fa-thin fa-images"></i>
+                      Approvement
+                    </a>
+                  </li>
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt"></i>

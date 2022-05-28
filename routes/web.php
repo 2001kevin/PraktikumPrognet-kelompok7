@@ -62,24 +62,31 @@ Route::prefix('user')->name('client.')->group(function () {
     Route::post('/beli/checkout/{id}/{jumlah}', [CartController::class, 'beli_checkout'])->name('beli-checkout');
     Route::post('/beli-bayar/{id}/{jumlah}', [CartController::class, 'beli_bayar'])->name('beli-bayars');
     Route::get('/transaksi-detail/{id}',[CartController::class,'transaksi_detail'])->name('transaksi-detail');
-    Route::post('/transaksi-bukti/{id}',[CartController::class,'transaksi_bukti'])->name('transaksi-bukti');
-    Route::get('/transaksi-batal/{id}',[CartController::class,'transaksi_batal'])->name('transaksi-batal');
-    Route::get('/transaksi-status/{id}',[CartController::class,'transaksi_status'])->name('adm-transaksi-status');
-    Route::get('/keranjang/bayar',[CartController::class,'keranjang_bayar'])->name('keranjang-bayar');
-    Route::get('/transaksi-bukti/{id}',[CartController::class,'transaksi_buktis'])->name('transaksi-bukti');
-    Route::get('/cart',[CartController::class,'cartindex']);
+    Route::post('/transaksi-buktiz/{id}',[CartController::class,'transaksi_bukti'])->name('transaksi-buktiz');
+    Route::post('/transaksi-batal/{id}',[CartController::class,'transaksi_batal'])->name('transaksi-batal');
+    Route::post('/transaksi-status/{id}',[CartController::class,'transaksi_status'])->name('adm-transaksi-status');
+    Route::post('/keranjang/bayar',[CartController::class,'keranjang_bayar'])->name('keranjang-bayar');
+    Route::post('/keranjang/checkout', [CartController::class, 'keranjang_checkout'])->name('keranjang-checkout');
+    Route::post('/keranjang/alamat',[CartController::class,'keranjang_alamat'])->name('keranjang-alamat');
+    Route::get('/keranjang/hapus/{id}',[CartController::class,'keranjang_hapus'])->name('keranjang-hapus');
+   
+    Route::get('/cart',[CartController::class,'keranjang']);
 });
+
 // Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['guest:admin'])->group(function () {
         Route::get('login', [AdminController::class, 'login'])->name('login');
         Route::post('logins_proses', [AdminController::class, 'proses_login'])->name('login_proses');
         Route::post('/logout/admin', [AdminController::class, 'logout'])->name('logout');
+        Route::post('/adm-transaksi-status/{id}', [CartController::class, 'transaksi_detail'])->name('trx-status');
+        Route::post('/adm-transaksi-bukti/{id}', [CartController::class, 'transaksi_bukti'])->name('trx-status-buktis');
     });
     Route::middleware(['auth:admin'])->group(function () {
         Route::view('admin.home', 'admin.home')->name('home');
     });
 });
+Route::post('/admin-transaksi-status/{id}', [CartController::class, 'transaksi_status'])->name('trx-status-admin');
 
 //CRUD MASTER TABLE
 Route::resource('courier', CourierController::class);
@@ -91,3 +98,6 @@ Route::resource('product_category_detail', ProductCategoryDetailController::clas
 
 //USER REVIEW
 Route::post('product/review', [ProductReviewController::class, 'store']);
+
+//approvement
+Route::get('approve', [AdminController::class, 'approve']);

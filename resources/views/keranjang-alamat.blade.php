@@ -3,7 +3,7 @@
 @section('title', 'Toko Buku | Alamat')
 
 @section('content')
-<form method="post" action="{{route('keranjang-checkout')}}" enctype="multipart/form-data">
+<form method="post" action="/keranjang/checkout" enctype="multipart/form-data">
     @csrf
     <div class="card">
         <div class="card-body">
@@ -54,6 +54,9 @@
                 @enderror
             </div>
         </div>
+        @foreach($keranjang as $keranjangs)
+            <input type="number" class="form-control" value="{{$keranjangs->id}}" name="keranjang[]" hidden>
+        @endforeach
         <div class="d-grid mt-3 mx-3 mb-3">
             <button type="submit" class="btn btn-primary">Selanjutnya</button>
         </div>

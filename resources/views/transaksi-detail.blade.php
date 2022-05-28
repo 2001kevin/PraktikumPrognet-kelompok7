@@ -35,7 +35,9 @@
         @foreach($transaction_detail as $transaction_details)
         <div class="card">
             @php
+        
             $gambar = App\Models\product_image::where('product_id', '=', $transaction_details->product_id)->first();
+            
             @endphp
             <div class="row g-0">
                 <div class="col-md-3">
@@ -43,8 +45,9 @@
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h4 class="card-title">{{$transaction_details->product->product_name}}</h4>
-
+                    
+                        <h4 class="card-title">{{$transaction_details->product_name}}</h4>
+                        
                         <div class="form-inline">
                             <h5 class="card-subtitle mb-2 mt-2 text-muted">Rp.</h5>
                             <h5 class="card-subtitle mb-2 mt-2 text-muted">{{$transaction_details->selling_price}}</h5>
@@ -136,7 +139,7 @@
                     <h4 class="badge badge-primary mb-4">{{$transaction->status}}</h4>
                 </div>
 
-                @auth('user')
+                @auth('web')
                 @if($transaction->status == "menunggu bukti pembayaran")
                 <div class="row">
                     <div class="progress-container mb-4">
@@ -151,7 +154,7 @@
                     </div>
                 </div>
 
-                <form method="post" action="{{route('transaksi-bukti', $transaction->id)}}" enctype="multipart/form-data">
+                <form method="post" action="/transaksi-buktiz/{{$transaction->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-grid">
                         <div class="mb-3">
@@ -167,7 +170,7 @@
                     </div>
                 </form>
 
-                <form method="post" action="{{route('transaksi-batal', $transaction->id)}}" enctype="multipart/form-data">
+                <form method="post" action="/transaksi-batal/{{$transaction->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-grid">
                         <button type="submit" class="btn btn-danger">Batal</button>
@@ -176,7 +179,7 @@
                 @endif
                 @endauth
 
-                @if(auth()->user())
+                @auth('admin')
                 @if($transaction->status == "menunggu bukti pembayaran")
                 <div class="row">
                     <div class="progress-container mb-4">
@@ -191,13 +194,14 @@
                     </div>
                 </div>
                 @else
+               
                 <div class="progress-container mb-4">
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 100%;">
                         </div>
                     </div>
                 </div>
-                <form class="d-grid" method="post" action="{{route('adm-transaksi-status', $transaction->id)}}" enctype="multipart/form-data">
+                <form class="d-grid" method="post" action="/adm-transaksi-status/{{ $transaction->id }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Ubah Status</label>
@@ -219,11 +223,11 @@
                     </div>
                 </div>
                 <div class="d-grid">
-                    <a type="button" class="btn btn-info text-white" href="{{route('adm-transaksi-bukti', $transaction->id)}}">Lihat Bukti Pembayaran</a>
+                    <a type="button" class="btn btn-info text-white" href="/adm-transaksi-bukti/{{$transaction->id}}">Lihat Bukti Pembayaran</a>
                     <a href="{{url('proof_of_payment/'. $transaction->proof_of_payment)}}" type="button" class="btn btn-outline-primary" download>Unduh Bukti Pembayaran</a>
                 </div>
                 @endif
-                @endif
+                @endauth
             </div>
         </div>
     </div>
