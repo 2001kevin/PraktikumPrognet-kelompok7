@@ -63,6 +63,7 @@
                             <button type="submit" class="btn btn-primary px-4">
                                 {{ trans('global.login') }}
                             </button>
+                             <a type="button" class="btn btn-primary" href="/admin/login">Login as Admin</a>
                         </div>
                         <div class="col-6 text-right">
                             @if(Route::has('password.request'))

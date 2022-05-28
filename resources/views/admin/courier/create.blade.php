@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="form-floating mb-3 mt-3 col-lg-8">
                     <label for="province">Courier</label>
-                    <input type="text" class="form-control" id="price" name="courier" value="{{ old('courier') }}" placeholder="Product Category">
+                    <input type="text" class="form-control" id="price" name="courier" value="{{ old('courier') }}" placeholder="Add Courier">
                 </div>
                
                     <button type="submit" class="btn btn-primary">Save</button>

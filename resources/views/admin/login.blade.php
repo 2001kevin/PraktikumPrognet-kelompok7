@@ -15,7 +15,6 @@
                         {{ session('status') }}
                     </div>
                 @endif
-
                 <form method="POST" action="{{ route('admin.login_proses') }}">
                     @csrf
 

@@ -3,7 +3,7 @@
 
 @section('content')
 
-<form method="post" action="#" enctype="multipart/form-data">
+<form method="post" action="{{route('keranjang-alamat')}}" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-9">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <a href="/detail/{{ $keranjangs->product->id }} ">
+                            <a href="/detail/{{$keranjangs->id}}">
                                 <h4 class="card-title">{{$keranjangs->product->product_name}}</h4>
                             </a>
 
@@ -44,7 +44,7 @@
                                     <h5 class="card-subtitle mb-2 mt-2 text-muted">Rp.</h5>
                                     <h5 class="card-subtitle mb-2 mt-2 text-muted">{{$harga}}</h5>
                                     @if(count($discount)>0)
-                                    <h5 class="card-subtitle mb-2 mt-2 ms-2 text-muted text-decoration-line-through">Rp.{{$keranjangs->book->price}}</h5>
+                                    <h5 class="card-subtitle mb-2 mt-2 ms-2 text-muted text-decoration-line-through">Rp.{{$keranjangs->product->price}}</h5>
                                     @endif
                                 </div>
 
@@ -63,9 +63,9 @@
                                 @endif
 
                                 <div class="form-inline" style="float:right;">
-                                    <input class="form-control form-control-lg" style="width:70px;" type="number" name="jumlah[]" value="{{$keranjangs->qty}}" id="jumlah{{$i}}" min="1" max="{{$keranjangs->book->stock}}" onkeyup="stock = '<?php echo $keranjangs->book->stock; ?>';  if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
+                                    <input class="form-control form-control-lg" style="width:70px;" type="number" name="jumlah[]" value="{{$keranjangs->qty}}" id="jumlah{{$i}}" min="1" max="{{$keranjangs->product->stock}}" onkeyup="stock = '<?php echo $keranjangs->product->stock; ?>';  if(this.value<0){this.value= this.value * -1}else if(this.value==0){this.value = 1}else if(this.value > stock){this.value = stock}">
                                     <a type="button" class="btn btn-primary btn-icon btn-round ms-5" href="{{route('keranjang-hapus', $keranjangs->id)}}">
-                                        <span class="material-icons-sharp text-white" style="margin-top:6px; vertical-align: middle; font-size:27px;">delete</span>
+                                        <span class="" style="margin-top:6px; vertical-align: middle; font-size:27px;"><i class="fa fa-trash" aria-hidden="true"></i></span>
                                     </a>
                                 </div>
 

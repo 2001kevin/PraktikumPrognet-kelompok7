@@ -26,7 +26,7 @@
          @auth
             <div class="dropdown">
                <button type="button" class="btn btn-danger dropdown-toggle mt-1" data-toggle="dropdown">
-               Welcome back, {{ auth()->user()->name }}
+                  Welcome back, {{ auth()->user()->name }}
                </button>
                <div class="dropdown-menu">
                <a class="dropdown-item" href="/profile">My Profile</a>

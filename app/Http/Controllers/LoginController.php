@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         $check = $request->only('email', 'password');
         if (Auth::guard('web')->attempt($check)) {
-            return redirect()->route('client.home')->with('status', session('status'));
+            return redirect('/')->with('status', session('status'));
         }
         return redirect()->route('admin.home')->with('status', session('status'));
     }
@@ -62,6 +62,6 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
-        return redirect()->route('client.home');
+        return redirect('/user/login');
     }
 }

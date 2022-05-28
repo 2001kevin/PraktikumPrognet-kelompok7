@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cart;
-use App\Models\Admin;
-use App\Models\User;
 use App\Models\product;
 use App\Models\courier;
+use App\Models\Admin;
+use App\Models\user;
 use App\Models\discount;
 use App\Models\transaction;
 use App\Models\transaction_detail;
 use Carbon\Carbon;
-
 use Illuminate\Support\Facades\DB;
 use illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -29,30 +28,30 @@ class CartController extends Controller
 
     public function keranjang_tambah($id, Request $request)
     {
-
+        
         $user_id = Auth()->user()->id;
         $cart = Cart::where('user_id', '=', $user_id)->where('product_id', '=', $id)->where('status', '=', 'aktif')->get();
-        $product_stock = product::where('id', $id)->first();
-
-        if (count($cart) > 0) {
-            foreach ($cart as $carts) {
-                if ($product_stock->stock == $carts->qty) {
+        $product_stock = product::where('id',$id)->first();
+      
+        if(count($cart) > 0) {
+            foreach ($cart as $carts){
+                if($product_stock->stock == $carts->qty){
                     dd('tes');
                     $carts->qty = $carts->qty + 0;
                     $carts->save();
-                } else if ($product_stock->stock < $carts->qty + $request->jumlah_keranjang) {
+                }else if($product_stock->stock < $carts->qty + $request->jumlah_keranjang){
                     dd('tes=');
                     $k = $carts->qty;
                     $jumlah = $product_stock->stock - $k;
                     $carts->qty = $carts->qty + $jumlah;
                     $carts->save();
-                } else {
+                }else{
                     // dd('tegsgshs');
                     $carts->qty = $carts->qty + $request->jumlah_keranjang;
                     $carts->save();
                 }
             }
-        } else {
+        }else {
             $insert_cart = array(
                 'user_id' => $user_id,
                 'product_id' => $id,
@@ -66,11 +65,10 @@ class CartController extends Controller
 
     public function cartindex(){
         $keranjang = cart::all();
-        return view('menus.cart', compact('keranjang'));
+        return view('menus.cart',compact('keranjang'));
     }
 
-    public function beli_langsung($id, Request $request)
-    {
+    public function beli_langsung($id, Request $request){
         //dd('aaa');
         $jumlah = $request->jumlah_beli;
         $user_id = Auth()->user()->id;
@@ -117,8 +115,7 @@ class CartController extends Controller
         return view('beli-alamat', compact('province', 'city', 'kurir', 'id', 'jumlah'));
     }
 
-    public function beli_checkout($id, $jumlah, Request $request)
-    {
+    public function beli_checkout($id, $jumlah, Request $request){
         //dd('tes');
         $validatedData = $request->validate([
             'province' => 'required|min:1',
@@ -136,7 +133,7 @@ class CartController extends Controller
         $address = $request->address;
 
         $keranjang = cart::where('user_id', '=', $user_id)->where('status', '=', 'aktif')->get();
-
+     
         $subtotal = 0;
         $tanggal = Carbon::now('Asia/Makassar')->format('Y-m-d');
         $diskon = discount::where('product_id', '=', $product->id)->where('start', '<=', $tanggal)->where('end', '>=', $tanggal)->orderBy('id', 'DESC')->get();
@@ -163,7 +160,7 @@ class CartController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "origin=" . $request->province . "&destination=" . $request->regency . "&weight=" . $weight . "&courier=" . $kurir->courier,
+            CURLOPT_POSTFIELDS => "origin=".$request->province."&destination=" . $request->regency . "&weight=" . $weight . "&courier=" . $kurir->courier,
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
                 "key: 400f496a78d8de8e403cb03633e42774"
@@ -174,7 +171,7 @@ class CartController extends Controller
         $err = curl_error($curl);
         curl_close($curl);
         $cost = json_decode($response, true);
-
+        
         // return $cost;
         foreach ($cost["rajaongkir"]["results"] as $costs) {
             foreach ($costs["costs"] as $costss) {
@@ -188,7 +185,7 @@ class CartController extends Controller
         }
 
         $total = $shipping_cost + $subtotal;
-        return view('beli-checkout', compact('product', 'jumlah', 'kurir', 'subtotal', 'discount', 'selling_price', 'province_name', 'regency_name', 'address', 'shipping_cost', 'total'));
+        return view('beli-checkout', compact('product','jumlah', 'kurir', 'subtotal', 'discount', 'selling_price', 'province_name', 'regency_name', 'address', 'shipping_cost', 'total'));
     }
 
     public function beli_bayar($id, $jumlah, Request $request)
@@ -224,54 +221,62 @@ class CartController extends Controller
         );
         transaction_detail::create($transaksi_detail);
 
-        $book = product::find($id);
-        $book->stock = $book->stock - $jumlah;
-        $book->save();
+        $data =product::where('id',$id)->first();
+       
+        // $product =  DB::Table('products')->where('id',$id)->first();
+        // $data = $product->stock - $jumlah;
+
+        // $s = product::find($id);
+        // $s->stock = $data;
+        // $s->save();
+        
 
         // $admin = admin::all();
 
         // foreach($admin as $a)
-
-
+        
+        
         //$transaction_detail = transaction_detail::where('transaction_id', '=', $transaction->id)->latest()->first();
-        return redirect()->route('client.transaksi-detail', $transaction->id);
+        return redirect()->route('client.transaksi-detail',$transaction->id);
     }
 
     public function transaksi_detail($id)
     {
-
-        $transaction = transaction::where('id', $id)->first();
+    
+        $transaction = transaction::where('id',$id)->first();
         $transaction_detail = transaction_detail::where('transaction_id', $id)->latest()->get();
+
         $transaction_detail_id = transaction_detail::where('transaction_id', $id)->first();
 
-        $keranjang = cart::where('user_id', auth()->user()->id)->where('status', 'aktif')->get();
-        foreach ($keranjang as $k) {
+        $keranjang = cart::where('user_id',auth()->user()->id)->where('status','aktif')->get();
+        foreach($keranjang as $k){
             $keranjang = cart::find($k->id);
-            $keranjang->status = "hapus";
+            $keranjang->status="hapus";
             $keranjang->update();
         }
 
         $tanggal = Carbon::now('Asia/Makassar');
-
+        
         if ($transaction->status == "menunggu bukti pembayaran" && $transaction->timeout < $tanggal) {
             $transaction->status = "transaksi expired";
             $transaction->save();
 
             $transaction_detail = transaction_detail::where('transaction_id', '=', $id)->get();
             foreach ($transaction_detail as $transaction_details) {
-                $book = product::find($transaction_details->book_id);
-                $book->stock = $book->stock + $transaction_details->qty;
-                $book->save();
+                $product = product::find($transaction_details->product_id);
+                $product->stock = $product->stock + $transaction_details->qty;
+                $product->save();
             }
 
             return view('transaksi-detail', compact('transaction', 'transaction_detail'));
         } else if ($transaction->status == "menunggu bukti pembayaran" && $transaction->timeout >= $tanggal) {
+            
             $date = Carbon::createFromFormat('Y-m-d H:s:i', $transaction->timeout);
             $interval = $tanggal->diffAsCarbonInterval($date);
-
+            
             return view('transaksi-detail', compact('transaction', 'interval', 'transaction_detail'));
         } else {
-
+         
             return view('transaksi-detail', compact('transaction', 'transaction_detail'));
         }
     }
@@ -334,7 +339,7 @@ class CartController extends Controller
 
     public function keranjang_checkout(Request $request)
     {
-
+     
         $validatedData = $request->validate([
             'province' => 'required|min:1',
             'regency' => 'required|min:1',
@@ -365,7 +370,7 @@ class CartController extends Controller
                 $subtotal = $subtotal + ($keranjangs->qty * $harga);
                 array_push($discount, $diskon[0]->percentage);
                 array_push($selling_price, $harga);
-            } else {
+            } else{
                 $subtotal = $subtotal + ($keranjangs->qty * $keranjangs->product->price);
                 array_push($discount, 0);
                 array_push($selling_price, $keranjangs->product->price);
@@ -383,7 +388,7 @@ class CartController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "origin=" . $request->province . "&destination=" . $request->regency . "&weight=" . $weight . "&courier=" . $kurir->courier,
+            CURLOPT_POSTFIELDS => "origin=".$request->province."&destination=" . $request->regency . "&weight=" . $weight . "&courier=" . $kurir->courier,
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
                 "key: 400f496a78d8de8e403cb03633e42774"
@@ -394,7 +399,7 @@ class CartController extends Controller
         $err = curl_error($curl);
         curl_close($curl);
         $cost = json_decode($response, true);
-
+        
         // return $cost;
         foreach ($cost["rajaongkir"]["results"] as $costs) {
             foreach ($costs["costs"] as $costss) {
@@ -406,7 +411,7 @@ class CartController extends Controller
             }
             break;
         }
-
+    
         $total = $shipping_cost + $subtotal;
         return view('keranjang-checkout', compact('keranjang', 'kurir', 'subtotal', 'discount', 'selling_price', 'province_name', 'regency_name', 'address', 'shipping_cost', 'total'));
     }
@@ -430,10 +435,11 @@ class CartController extends Controller
                 $book->stock = $book->stock + $transaction_details->qty;
                 $book->save();
             }
+         
 
+           
+           return redirect()->back();
 
-
-            return redirect()->back();
         }
 
         $image = $request->file('proof_of_payment');
@@ -443,7 +449,7 @@ class CartController extends Controller
         $transaction->status = "menunggu verifikasi";
         $transaction->save();
 
-
+      
 
         $image->move(public_path('proof_of_payment'), $image_name);
 
@@ -458,7 +464,7 @@ class CartController extends Controller
 
         $transaction_detail = transaction_detail::where('transaction_id', '=', $id)->get();
         foreach ($transaction_detail as $transaction_details) {
-            $book = transaction::find($transaction_details->book_id);
+            $book = product::find($transaction_details->book_id);
             $book->stock = $book->stock + $transaction_details->qty;
             $book->save();
         }
@@ -468,28 +474,28 @@ class CartController extends Controller
         //$user_data=User::find($user->id);
         $admin = Admin::find(3);
         $data = [
-            'nama' => $user->name,
-            'message' => 'Transaksi Dibatalkan!',
-            'id' => $id,
-            'category' => 'canceled'
-        ];
-        $data_encode = json_encode($data);
-        $admin->createNotif($data_encode);
-        //notif admin---------------------------------------
+           'nama'=> $user->name,
+           'message'=>'Transaksi Dibatalkan!',
+           'id'=> $id,
+           'category' => 'canceled'
+       ];
+       $data_encode = json_encode($data);
+       $admin->createNotif($data_encode);
+       //notif admin---------------------------------------
 
         //notif user---------------------------------------
-        $user = auth::user();
-        $user_data = User::find($user->id);
-        $admin = Admin::find(3);
+        $user=auth::User();
+        $user_data=User::find($user->id);
+        $admin = admin::find(3);
         $data = [
-            'nama' => 'Admin',
-            'message' => 'Transaksi Berhasil Dibatalkan!',
-            'id' => $id,
-            'category' => 'canceled'
-        ];
-        $data_encode = json_encode($data);
-        $user_data->createNotifUser($data_encode);
-        //notif user---------------------------------------
+           'nama'=> 'Admin',
+           'message'=>'Transaksi Berhasil Dibatalkan!',
+           'id'=> $id,
+           'category' => 'canceled'
+       ];
+       $data_encode = json_encode($data);
+       $user_data->createNotifUser($data_encode);
+       //notif user---------------------------------------
 
         return redirect()->back();
     }
@@ -513,11 +519,11 @@ class CartController extends Controller
             'sub_total' => $request->subtotal,
             'status' => "menunggu bukti pembayaran",
         );
-
+ 
         transaction::create($transaksi);
 
         $transaction = transaction::where('user_id', '=', $user_id)->where('total', '=', $request->total)->orderBy('id', 'DESC')->first();
-
+      
         $i = 0;
         foreach ($request->keranjang as $keranjangs) {
             $keranjang = cart::find($keranjangs);
@@ -537,8 +543,9 @@ class CartController extends Controller
 
         $transaction = transaction::where('user_id', '=', $user_id)->where('total', '=', $request->total)->orderBy('id', 'DESC')->first();
 
-
-        return redirect()->route('client.transaksi-detail', $transaction->id);
+        
+        return redirect()->route('client.transaksi-detail',$transaction->id);
+        
     }
     public function transaksi_buktis()
     {
@@ -549,12 +556,16 @@ class CartController extends Controller
         foreach ($transaction as $transactions) {
             if ($transactions->status == "menunggu bukti pembayaran" && $transactions->timeout < $tanggal) {
                 $transactions->status = "transaksi expired";
-                $transactions->save();
+                $transactions->save();  
             }
-
+                        
             $date = Carbon::createFromFormat('Y-m-d H:s:i', $transactions->timeout)->toDateTimeString();
             $countdown = $tanggal->diffAsCarbonInterval($date);
             array_push($interval, $countdown);
         }
+
+        return view('transaksi', compact('transaction', 'interval'));
     }
+
 }
+
