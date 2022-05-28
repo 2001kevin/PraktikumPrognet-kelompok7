@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\cart;
 use App\Models\product;
 use App\Models\courier;
+use App\Models\Admin;
+use App\Models\user;
 use App\Models\discount;
 use App\Models\transaction;
 use App\Models\transaction_detail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+
 class CartController extends Controller
 {
     public function keranjang()
@@ -407,7 +411,7 @@ class CartController extends Controller
             }
             break;
         }
-
+    
         $total = $shipping_cost + $subtotal;
         return view('keranjang-checkout', compact('keranjang', 'kurir', 'subtotal', 'discount', 'selling_price', 'province_name', 'regency_name', 'address', 'shipping_cost', 'total'));
     }
@@ -460,13 +464,13 @@ class CartController extends Controller
 
         $transaction_detail = transaction_detail::where('transaction_id', '=', $id)->get();
         foreach ($transaction_detail as $transaction_details) {
-            $book = book::find($transaction_details->book_id);
+            $book = product::find($transaction_details->book_id);
             $book->stock = $book->stock + $transaction_details->qty;
             $book->save();
         }
 
         //notif admin---------------------------------------
-        $user=auth::user();
+        $user = auth::user();
         //$user_data=User::find($user->id);
         $admin = Admin::find(3);
         $data = [
@@ -480,9 +484,9 @@ class CartController extends Controller
        //notif admin---------------------------------------
 
         //notif user---------------------------------------
-        $user=auth::user();
+        $user=auth::User();
         $user_data=User::find($user->id);
-        $admin = Admin::find(3);
+        $admin = admin::find(3);
         $data = [
            'nama'=> 'Admin',
            'message'=>'Transaksi Berhasil Dibatalkan!',

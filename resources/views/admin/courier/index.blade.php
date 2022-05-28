@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/courier/create">Add Product Category</a>
+    <a type="button" class="btn btn-success mb-3 mt-3 rounded-pill " href="/courier/create">Add Courier</a>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -14,7 +14,7 @@
     @endif
     <div class="card bg-light">
       <div class="card-header">
-        <h1>Category List</h1>
+        <h1>Courier List</h1>
       </div>
       <div class="card-body">
         <table class="table table-striped table-hover " id="province">

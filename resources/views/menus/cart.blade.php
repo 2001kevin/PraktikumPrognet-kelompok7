@@ -44,7 +44,7 @@
                                     <h5 class="card-subtitle mb-2 mt-2 text-muted">Rp.</h5>
                                     <h5 class="card-subtitle mb-2 mt-2 text-muted">{{$harga}}</h5>
                                     @if(count($discount)>0)
-                                    <h5 class="card-subtitle mb-2 mt-2 ms-2 text-muted text-decoration-line-through">Rp.{{$keranjangs->book->price}}</h5>
+                                    <h5 class="card-subtitle mb-2 mt-2 ms-2 text-muted text-decoration-line-through">Rp.{{$keranjangs->product->price}}</h5>
                                     @endif
                                 </div>
 

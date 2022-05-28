@@ -18,8 +18,8 @@
             </div>
             <div class="card-body">
                 <div class="form-floating mb-3 mt-3 col-lg-8">
-                    <input type="text" class="form-control" id="price" name="category_name" value="{{ old('category_name') }}" placeholder="Product Category">
                     <label for="province">Product Category</label>
+                    <input type="text" class="form-control" id="price" name="category_name" value="{{ old('category_name') }}" placeholder="Product Category">
                 </div>
                
                     <button type="submit" class="btn btn-primary">Save</button>
