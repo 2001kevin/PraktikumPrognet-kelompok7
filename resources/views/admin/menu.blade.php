@@ -9,12 +9,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">
-                    <i class="nav-icon fa fa-exclamation" ></i>
-                    Notification
-                </a>
-              </li>
-            <li class="nav-item">
                 <a href="/product_category" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
                     Categories

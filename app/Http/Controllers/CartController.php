@@ -476,33 +476,33 @@ class CartController extends Controller
             $book->save();
         }
 
-         //notif admin---------------------------------------
-        $user=auth::user();
-        //$user_data=User::find($user->id);
-        $admin = Admin::find(3);
-        $data = [
-           'nama'=> $user->name,
-           'message'=>'Transaksi Dibatalkan!',
-           'id'=> $id,
-           'category' => 'canceled'
-       ];
-       $data_encode = json_encode($data);
-       $admin->AdminNotification($data_encode);
-       //notif admin---------------------------------------
+    //      //notif admin---------------------------------------
+    //     $user=auth::user();
+    //     //$user_data=User::find($user->id);
+    //     $admin = Admin::find(3);
+    //     $data = [
+    //        'nama'=> $user->name,
+    //        'message'=>'Transaksi Dibatalkan!',
+    //        'id'=> $id,
+    //        'category' => 'canceled'
+    //    ];
+    //    $data_encode = json_encode($data);
+    //    $admin->AdminNotification($data_encode);
+    //    //notif admin---------------------------------------
 
-        //notif user---------------------------------------
-        $user=auth::user();
-        $user_data=User::find($user->id);
-        $admin = Admin::find(3);
-        $data = [
-           'nama'=> 'Admin',
-           'message'=>'Transaksi Berhasil Dibatalkan!',
-           'id'=> $id,
-           'category' => 'canceled'
-       ];
-       $data_encode = json_encode($data);
-       $user_data->createNotifUser($data_encode);
-       //notif user---------------------------------------
+    //     //notif user---------------------------------------
+    //     $user=auth::user();
+    //     $user_data=User::find($user->id);
+    //     $admin = Admin::find(3);
+    //     $data = [
+    //        'nama'=> 'Admin',
+    //        'message'=>'Transaksi Berhasil Dibatalkan!',
+    //        'id'=> $id,
+    //        'category' => 'canceled'
+    //    ];
+    //    $data_encode = json_encode($data);
+    //    $user_data->createNotifUser($data_encode);
+    //    //notif user---------------------------------------
 
         return redirect()->back();
     }
