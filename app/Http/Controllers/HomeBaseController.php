@@ -47,7 +47,7 @@ class HomeBaseController extends Controller
         $products = product::with('product_image','product_review')->find($product->id);
         $transaction = transaction::all();
         //return $products;
-        $user_id = Auth()->user()->id;
+        //$user_id = Auth()->user()->id;
         //return $user_id;
         return view('menus.detailproduct', compact('products','transaction'));
     }

@@ -475,34 +475,21 @@ class CartController extends Controller
             $book->stock = $book->stock + $transaction_details->qty;
             $book->save();
         }
+       //notif admin---------------------------------------
 
-    //      //notif admin---------------------------------------
-    //     $user=auth::user();
-    //     //$user_data=User::find($user->id);
-    //     $admin = Admin::find(3);
-    //     $data = [
-    //        'nama'=> $user->name,
-    //        'message'=>'Transaksi Dibatalkan!',
-    //        'id'=> $id,
-    //        'category' => 'canceled'
-    //    ];
-    //    $data_encode = json_encode($data);
-    //    $admin->AdminNotification($data_encode);
-    //    //notif admin---------------------------------------
-
-    //     //notif user---------------------------------------
-    //     $user=auth::user();
-    //     $user_data=User::find($user->id);
-    //     $admin = Admin::find(3);
-    //     $data = [
-    //        'nama'=> 'Admin',
-    //        'message'=>'Transaksi Berhasil Dibatalkan!',
-    //        'id'=> $id,
-    //        'category' => 'canceled'
-    //    ];
-    //    $data_encode = json_encode($data);
-    //    $user_data->createNotifUser($data_encode);
-    //    //notif user---------------------------------------
+        //notif user---------------------------------------
+        $user=auth::user();
+        $user_data=User::find($user->id);
+        $admin = Admin::find(1);
+        $data = [
+           'nama'=> 'Admin',
+           'message'=>'Transaksi Berhasil Dibatalkan!',
+           'id'=> $id,
+           'category' => 'canceled'
+       ];
+       $data_encode = json_encode($data);
+       $user_data->createNotifusers($data_encode);
+       //notif user---------------------------------------
 
         return redirect()->back();
     }
@@ -547,6 +534,27 @@ class CartController extends Controller
             $book->save();
             $i++;
         }
+         $user = Auth::user();
+            $data_user = User::find($user->id);
+            $admin = Admin::find(1);
+            $data = [
+                'nama' => $user->name,
+                'message' => 'membeli product!',
+                'id' => $transaction->id,
+                'category' => 'transaction'
+            ];
+            $data_encode = json_encode($data);
+            $admin->createNotif($data_encode);
+            //Notif User-------------------------------------------------------------------
+            $data = [
+                'nama' => 'Admin',
+                'message' => 'Upload Bukti Pembayaran!',
+                'id' => $transaction->id,
+                'category' => 'transcation'
+            ];
+            $data_encode = json_encode($data);
+            $data_user->createNotifusers($data_encode);
+            //Notif User-------------------------------------------------------------------
 
         $transaction = transaction::where('user_id', '=', $user_id)->where('total', '=', $request->total)->orderBy('id', 'DESC')->first();
 
@@ -570,27 +578,6 @@ class CartController extends Controller
             $countdown = $tanggal->diffAsCarbonInterval($date);
             array_push($interval, $countdown);
         }
-        $user = Auth::user();
-        $data_user = User::find($user->id);
-        $admin = Admin::find(3);
-        $data = [
-            'nama' => $user->name,
-            'message' => 'membeli product!',
-            'id' => $transaction->id,
-            'category' => 'transaction'
-        ];
-        $data_encode = json_encode($data);
-        $admin->createNotif($data_encode);
-        //Notif User-------------------------------------------------------------------
-        $data = [
-            'nama' => 'Admin',
-            'message' => 'Upload Bukti Pembayaran!',
-            'id' => $transaction->id,
-            'category' => 'transcation'
-        ];
-        $data_encode = json_encode($data);
-        $data_user->createNotifUser($data_encode);
-        //Notif User-------------------------------------------------------------------
 
         return view('transaksi', compact('transaction', 'interval'));
     }
