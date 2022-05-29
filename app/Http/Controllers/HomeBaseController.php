@@ -54,7 +54,9 @@ class HomeBaseController extends Controller
     }
 
     public function history(){
-        $transaction = transaction::all();
+        $user_id = Auth()->user()->id;
+        
+        $transaction = transaction::where('user_id', '=', $user_id)->get();;
         return view('listTransaksi', compact('transaction'));
     }
 }

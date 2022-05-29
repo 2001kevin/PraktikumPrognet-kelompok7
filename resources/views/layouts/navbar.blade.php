@@ -20,9 +20,11 @@
               <li class="nav-item">
                  <a class="nav-link" href="/contact">Contact</a>
               </li>
-              <li class="nav-item">
-                 <a class="nav-link" href="/history">Transaksiku</a>
-              </li>
+              @auth
+                  <li class="nav-item">
+                     <a class="nav-link" href="/history">Transaksiku</a>
+                  </li>
+              @endauth
               <li class="nav-item">
                  <a class="nav-link" href="/cart"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
               </li>
