@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<main>
+
   <!-- contact section start -->
   <div class="contact_section layout_padding">
     <div class="container">
@@ -31,3 +31,4 @@
  <!-- contact section end -->
 {{-- <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script> --}}
+@endsection

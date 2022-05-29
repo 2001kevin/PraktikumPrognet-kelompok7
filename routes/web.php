@@ -42,15 +42,10 @@ Route::prefix('user')->name('client.')->group(function () {
         Route::post('logins_proses', [LoginController::class, 'proses_login'])->name('login_proses');
     });
 });
-    Route::middleware(['guest:web'])->group(function () {
-        Route::get('about', function () {
-            return view('menus.index');
-        })->name('home');
-    });
+    
 
     Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
     Route::get('home', 'HomeController@redirect');
-    Route::get('/shop', function () {return view('menus.shop');})->name('home');
     Route::post('/contact/send', [ContactController::class, 'sendEmail'])->name('contact.send');
     Route::get('/change-password', [ChangePasswordController::class, 'create'])->name('password.create');
     Route::post('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
