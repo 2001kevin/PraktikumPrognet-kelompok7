@@ -231,9 +231,27 @@ class CartController extends Controller
         $s->save();
         
 
-        // $admin = admin::all();
-
-        // foreach($admin as $a)
+        $user = Auth::user();
+            $data_user = User::find($user->id);
+            $admin = Admin::find(1);
+            $data = [
+                'nama' => $user->name,
+                'message' => 'membeli product!',
+                'id' => $transaction->id,
+                'category' => 'transaction'
+            ];
+            $data_encode = json_encode($data);
+            $admin->createNotif($data_encode);
+            //Notif User-------------------------------------------------------------------
+            $data = [
+                'nama' => 'Admin',
+                'message' => 'Upload Bukti Pembayaran!',
+                'id' => $transaction->id,
+                'category' => 'transcation'
+            ];
+            $data_encode = json_encode($data);
+            $data_user->createNotifusers($data_encode);
+            //Notif User-------------------------------------------------------------------
         
         
         //$transaction_detail = transaction_detail::where('transaction_id', '=', $transaction->id)->latest()->first();
